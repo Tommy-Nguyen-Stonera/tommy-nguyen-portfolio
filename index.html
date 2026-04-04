@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tommy Nguyen - Sales Operations Analyst</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #2d2d2d;
+            line-height: 1.6;
+        }
+
+        .resume-container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            padding: 40px 50px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+
+        .header .subtitle {
+            font-size: 1rem;
+            color: #a8c0e0;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .contact-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px 24px;
+            font-size: 0.85rem;
+            color: #c8d6e5;
+        }
+
+        .contact-bar a {
+            color: #c8d6e5;
+            text-decoration: none;
+        }
+
+        .contact-bar a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .content {
+            padding: 35px 50px;
+        }
+
+        .section-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #0f3460;
+            border-bottom: 2px solid #0f3460;
+            padding-bottom: 6px;
+            margin-bottom: 16px;
+            margin-top: 30px;
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .career-profile {
+            font-size: 0.92rem;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        .competencies {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 30px;
+        }
+
+        .comp-item {
+            font-size: 0.88rem;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .comp-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #0f3460;
+        }
+
+        .comp-item strong {
+            color: #0f3460;
+        }
+
+        .job {
+            margin-bottom: 24px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 2px;
+        }
+
+        .job-company {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+
+        .job-dates {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .job-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #0f3460;
+            margin-bottom: 2px;
+        }
+
+        .job-context {
+            font-size: 0.82rem;
+            color: #888;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .job ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .job li {
+            font-size: 0.88rem;
+            color: #444;
+            padding: 3px 0 3px 16px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .job li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 11px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #0f3460;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 30px;
+        }
+
+        .project-item {
+            font-size: 0.88rem;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #0f3460;
+        }
+
+        .project-item strong {
+            color: #0f3460;
+        }
+
+        .edu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .edu-item .degree {
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .edu-item .school {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .certs-list {
+            list-style: none;
+            padding: 0;
+            columns: 2;
+            column-gap: 30px;
+        }
+
+        .certs-list li {
+            font-size: 0.85rem;
+            color: #444;
+            padding: 3px 0 3px 16px;
+            position: relative;
+            break-inside: avoid;
+        }
+
+        .certs-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #0f3460;
+        }
+
+        .certs-note {
+            font-size: 0.82rem;
+            color: #888;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .portfolio-section {
+            text-align: center;
+            padding: 20px 50px 30px;
+        }
+
+        .portfolio-link {
+            display: inline-block;
+            background: #0f3460;
+            color: #fff;
+            padding: 10px 28px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: background 0.2s;
+        }
+
+        .portfolio-link:hover {
+            background: #1a1a2e;
+        }
+
+        @media print {
+            body { background: #fff; }
+            .resume-container { box-shadow: none; margin: 0; }
+            .header { padding: 25px 40px; }
+            .content { padding: 20px 40px; }
+            .portfolio-section { display: none; }
+        }
+
+        @media (max-width: 650px) {
+            .header { padding: 30px 24px; }
+            .header h1 { font-size: 1.6rem; }
+            .content { padding: 24px; }
+            .competencies { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .contact-bar { flex-direction: column; align-items: center; gap: 4px; }
+            .job-header { flex-direction: column; }
+            .edu-item { flex-direction: column; }
+            .certs-list { columns: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <div class="header">
+            <h1>TOMMY NGUYEN</h1>
+            <div class="subtitle">Sales Operations, CRM & Reporting, Data Analytics</div>
+            <div class="contact-bar">
+                <span>0456 183 979</span>
+                <a href="mailto:tommyng.183@gmail.com">tommyng.183@gmail.com</a>
+                <span>Bankstown NSW 2200</span>
+                <a href="https://linkedin.com/in/tommy-nguyen-a145b414b" target="_blank">LinkedIn</a>
+                <a href="https://github.com/Tommy-Nguyen-Stonera" target="_blank">GitHub</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section-title">Career Profile</div>
+            <p class="career-profile">
+                Sales operations analyst with five years turning CRM chaos into structured reporting across building materials, property, and retail. Degree in marketing, hands-on analytics skills, and a track record of making sales ops actually work. I have managed pipelines across multiple platforms, built reporting workflows from scratch, and helped teams make faster decisions with better data. I'm looking for a Sales Analyst position where I can apply my industry experience to build dashboards, clean data, and deliver the numbers that drive real decisions.
+            </p>
+
+            <div class="section-title">Skills</div>
+            <div class="competencies">
+                <div class="comp-item"><strong>Data & Analytics:</strong> SQL, Power BI, Python, Excel, KPI Dashboards, Data Visualisation</div>
+                <div class="comp-item"><strong>CRM & Sales Platforms:</strong> BCI Central, EstimateOne, Monday.com, MYOB, Xero</div>
+                <div class="comp-item"><strong>Sales Operations:</strong> Pipeline Management, B2B Sales, Market Research, Procurement Tracking</div>
+                <div class="comp-item"><strong>Reporting & Communication:</strong> Sales Reporting, PowerPoint Presentations, Performance Dashboards</div>
+                <div class="comp-item"><strong>Digital & Marketing:</strong> Google Analytics, Google Ads, Canva, MS Office 365, Google Workspace</div>
+                <div class="comp-item"><strong>Automation:</strong> AI Tools, n8n Workflows</div>
+                <div class="comp-item"><strong>Professional:</strong> Detail Oriented, Self-starter, Adaptable, Cross-team Collaboration</div>
+            </div>
+
+            <div class="section-title">Employment History</div>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-company">Showtile</span>
+                    <span class="job-dates">December 2023 - Present</span>
+                </div>
+                <div class="job-title">Sales Operations Analyst (CRM & Data Reporting)</div>
+                <div class="job-context">Sales Operations & Administration, Tiles, Stone & Pavers, Sydney, NSW</div>
+                <ul>
+                    <li>Manage sales operations data and invoice reconciliation across MYOB and Xero for 200+ accounts - fully autonomous.</li>
+                    <li>Track 15+ international procurement pipelines - handle supplier quotes, delivery schedules, and cut mismatches by 30%.</li>
+                    <li>Redesigned and automated CRM data entry processes - reduced duplicate records and improved pipeline report reliability.</li>
+                    <li>Monitor customer behaviour and sales trends, prepare PowerPoint reports on performance and stock levels for management.</li>
+                    <li>Run showroom marketing through Canva, Google Ads, and Google Analytics - grew foot traffic by 20%.</li>
+                    <li>Use Monday.com to coordinate daily tasks, order tracking, and team workflow across the showroom.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-company">HTT Flooring</span>
+                    <span class="job-dates">July 2022 - December 2023</span>
+                </div>
+                <div class="job-title">Account Manager (Sales Representative)</div>
+                <div class="job-context">B2B Sales Operations & Reporting, Flooring Wholesale, Sydney, NSW</div>
+                <ul>
+                    <li>Sourced leads and built KPI frameworks across BCI Central, EstimateOne, and Monday.com for a $1M+ B2B portfolio.</li>
+                    <li>Conducted territory analysis across 4 markets - found 35% of revenue came from one region, rebalanced focus and improved growth by 15%.</li>
+                    <li>Administered and automated CRM data across 3 platforms for 300+ B2B accounts with 98% data accuracy.</li>
+                    <li>Prepared pricing proposals for builder and trade clients, advised 15+ retail accounts on positioning - contributed to 8% sales uplift.</li>
+                    <li>Built reporting workflows across sales, warehouse, and logistics - eliminated 3 manual handoffs, cut response time by 40%.</li>
+                    <li>Produced 30+ sales collateral pieces informed by market research - drove 12% increase in inbound enquiries.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-company">Royal Crystal Group</span>
+                    <span class="job-dates">May 2020 - July 2022</span>
+                </div>
+                <div class="job-title">Sales Representative & Business Development</div>
+                <div class="job-context">International B2B Sales Operations & Market Analysis, Vietnam (Remotely from Australia)</div>
+                <ul>
+                    <li>Produced competitor intelligence across 20+ flooring brands - insights led to 12% margin improvement.</li>
+                    <li>Managed cross-border operations across 2 time zones - maintained 95% on-time delivery rate.</li>
+                    <li>Led Sydney Build trade event activation - managed $15K budget, generated 50+ leads, secured 2x budget next year.</li>
+                    <li>Coordinated client orders across production and shipping teams - improved order accuracy to 97%, reduced complaints by 25%.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-company">Spire Property Group</span>
+                    <span class="job-dates">December 2020 - March 2023</span>
+                </div>
+                <div class="job-title">Key Account Manager</div>
+                <div class="job-context">Property Sector Key Accounts & Reporting, Sydney, NSW (Concurrent with above)</div>
+                <ul>
+                    <li>Generated weekly pipeline dashboards for 8 key accounts ($2M+) - preserved $350K revenue through early risk detection.</li>
+                    <li>Conducted market research using sales data - contributed to 20%+ growth in account portfolio value.</li>
+                    <li>Delivered sales performance presentations to C-suite - influenced $500K+ in quarterly resource allocation.</li>
+                    <li>Maintained CRM records at 99% accuracy.</li>
+                </ul>
+            </div>
+
+            <div class="section-title">Projects</div>
+            <p class="certs-note">(All projects are available on GitHub)</p>
+            <div class="projects-grid">
+                <div class="project-item"><strong>SQL - Retail Business Analysis:</strong> Sales performance analysis on 50K+ pizza retail transactions using T-SQL</div>
+                <div class="project-item"><strong>SQL - AU Building Approvals:</strong> 15+ years of ABS approval data by state, dwelling type, and seasonal trends</div>
+                <div class="project-item"><strong>SQL - AU Building Activity:</strong> Quarterly ABS data tracking starts, completions, and pipeline across all states</div>
+                <div class="project-item"><strong>SQL - US Construction Spending:</strong> 24 years of Census/FRED data covering GFC impact, sector shifts, and seasonal patterns</div>
+                <div class="project-item"><strong>Python - Construction Project Performance:</strong> Cost overruns, schedule variance, and risk scoring across 50K project records</div>
+                <div class="project-item"><strong>Python - Housing Feature Impact:</strong> Ames Housing data analysis on how materials and finishes drive property value</div>
+                <div class="project-item"><strong>Python - Home Furnishings Market:</strong> Amazon product data covering pricing, brands, ratings, and market concentration</div>
+                <div class="project-item"><strong>Power BI - Pizza Retail Dashboard:</strong> Interactive dashboard for sales KPIs, product mix, and order trends</div>
+                <div class="project-item"><strong>Python - Customer Sentiment Analysis:</strong> 8,000+ Home Depot reviews analysed with VADER for complaint themes and satisfaction patterns</div>
+            </div>
+
+            <div class="section-title">Education</div>
+            <div class="edu-item">
+                <span class="degree">Master of Marketing</span>
+                <span class="school">Western Sydney University</span>
+            </div>
+            <div class="edu-item">
+                <span class="degree">Bachelor of Commerce - Major: International Business</span>
+                <span class="school">Macquarie University</span>
+            </div>
+            <div class="edu-item">
+                <span class="degree">Diploma of Commerce</span>
+                <span class="school">SIBT - Navitas, Sydney</span>
+            </div>
+
+            <div class="section-title">Certifications & Professional Development</div>
+            <p class="certs-note">(Credentials available on LinkedIn profile)</p>
+            <ul class="certs-list">
+                <li>Advanced Data Analytics - Job Ready Master</li>
+                <li>Basic Data Analytics - Job Ready Master</li>
+                <li>Google Analytics Individual Qualification</li>
+                <li>Data Visualization: Storytelling (LinkedIn Learning)</li>
+                <li>Google Ads Search Certification</li>
+                <li>Google Ads Display Certification</li>
+                <li>OMCA Certification for Digital Marketers</li>
+                <li>Marketing Research Professional - Sales & Marketing</li>
+                <li>Advertising on Facebook, Instagram, LinkedIn</li>
+                <li>Marketing on Twitter/X</li>
+            </ul>
+        </div>
+
+        <div class="portfolio-section">
+            <a href="https://github.com/Tommy-Nguyen-Stonera" class="portfolio-link" target="_blank">View My Portfolio on GitHub</a>
+        </div>
+    </div>
+</body>
+</html>
