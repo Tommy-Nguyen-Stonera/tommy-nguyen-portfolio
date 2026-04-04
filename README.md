@@ -4,7 +4,7 @@
 
 Bankstown NSW 2200 | [tommyng.183@gmail.com](mailto:tommyng.183@gmail.com) | [LinkedIn](https://linkedin.com/in/tommy-nguyen-a145b414b)
 
-[View Online Resume](https://tommy-nguyen-stonera.github.io/tommy-nguyen-portfolio/)
+[View Online Resume](https://htmlpreview.github.io/?https://github.com/Tommy-Nguyen-Stonera/tommy-nguyen-portfolio/blob/main/portfolio.html)
 
 ---
 
