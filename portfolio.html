@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tommy Nguyen - Data & Sales Operations Portfolio</title>
+    <title>Tommy Nguyen - Sales Operations & Data Analytics Portfolio</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -14,7 +14,6 @@
             line-height: 1.6;
         }
 
-        /* Hero */
         .hero {
             background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 40%, #0f3460 100%);
             padding: 80px 30px 60px;
@@ -76,23 +75,11 @@
             transition: all 0.3s;
         }
 
-        .btn-primary {
-            background: #0f3460;
-            color: #fff;
-            border: 1px solid #1a4a7a;
-        }
-
+        .btn-primary { background: #0f3460; color: #fff; border: 1px solid #1a4a7a; }
         .btn-primary:hover { background: #1a4a7a; transform: translateY(-2px); }
-
-        .btn-outline {
-            background: transparent;
-            color: #8ba4c4;
-            border: 1px solid #2a3a5a;
-        }
-
+        .btn-outline { background: transparent; color: #8ba4c4; border: 1px solid #2a3a5a; }
         .btn-outline:hover { border-color: #8ba4c4; color: #fff; transform: translateY(-2px); }
 
-        /* Stats */
         .stats {
             display: flex;
             justify-content: center;
@@ -107,7 +94,6 @@
         .stat .number { font-size: 1.8rem; font-weight: 700; color: #4a8eda; }
         .stat .label { font-size: 0.75rem; color: #6a7a9a; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
 
-        /* Content */
         .content { max-width: 950px; margin: 0 auto; padding: 50px 24px; }
 
         .section-title {
@@ -116,12 +102,17 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             color: #4a8eda;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             padding-bottom: 10px;
             border-bottom: 1px solid #1a1a3e;
         }
 
-        /* Project cards */
+        .section-subtitle {
+            font-size: 0.82rem;
+            color: #6a7a9a;
+            margin-bottom: 28px;
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -158,22 +149,39 @@
         .tag-powerbi { background: rgba(238, 155, 0, 0.15); color: #ee9b00; }
 
         .project-card h3 { font-size: 1rem; color: #fff; margin-bottom: 8px; font-weight: 600; }
-
+        .project-card .insight { font-size: 0.78rem; color: #4a8eda; margin-bottom: 6px; font-weight: 600; }
         .project-card p { font-size: 0.82rem; color: #7a8aaa; margin-bottom: 16px; line-height: 1.5; }
 
         .project-card .links { display: flex; gap: 12px; }
-
         .project-card .links a {
             font-size: 0.75rem;
             color: #4a8eda;
             text-decoration: none;
             font-weight: 600;
             transition: color 0.2s;
+            padding: 4px 12px;
+            border: 1px solid #2a3a5a;
+            border-radius: 4px;
+        }
+        .project-card .links a:hover { color: #fff; border-color: #4a8eda; }
+
+        .experience-section { margin-bottom: 50px; }
+
+        .exp-card {
+            background: #12122a;
+            border: 1px solid #1a1a3e;
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 16px;
         }
 
-        .project-card .links a:hover { color: #6aaeea; }
+        .exp-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 4px; }
+        .exp-company { font-size: 1rem; font-weight: 700; color: #fff; }
+        .exp-dates { font-size: 0.78rem; color: #6a7a9a; }
+        .exp-title { font-size: 0.88rem; color: #4a8eda; font-weight: 600; margin-bottom: 4px; }
+        .exp-context { font-size: 0.78rem; color: #5a6a8a; margin-bottom: 10px; }
+        .exp-highlights { font-size: 0.82rem; color: #8a9aba; line-height: 1.6; }
 
-        /* Skills */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -189,10 +197,8 @@
         }
 
         .skill-group h4 { font-size: 0.78rem; color: #4a8eda; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-
         .skill-group p { font-size: 0.82rem; color: #8a9aba; line-height: 1.6; }
 
-        /* Education */
         .edu-list { margin-bottom: 50px; }
 
         .edu-item {
@@ -206,7 +212,6 @@
         .edu-item .degree { font-weight: 600; color: #d0d8e8; font-size: 0.9rem; }
         .edu-item .school { color: #6a7a9a; font-size: 0.82rem; }
 
-        /* Footer */
         .footer {
             text-align: center;
             padding: 40px 24px;
@@ -218,13 +223,13 @@
         .footer a { color: #4a8eda; text-decoration: none; }
         .footer a:hover { color: #6aaeea; }
 
-        /* Mobile */
         @media (max-width: 600px) {
             .hero h1 { font-size: 1.8rem; }
             .stats { gap: 24px; }
             .projects-grid { grid-template-columns: 1fr; }
             .skills-grid { grid-template-columns: 1fr; }
             .edu-item { flex-direction: column; gap: 2px; }
+            .exp-header { flex-direction: column; }
         }
     </style>
 </head>
@@ -232,117 +237,172 @@
     <div class="hero">
         <div class="hero-content">
             <h1>TOMMY NGUYEN</h1>
-            <div class="tagline">Sales Operations, CRM & Reporting, Data Analytics</div>
+            <div class="tagline">Sales Operations Analyst</div>
             <p class="summary">
-                Five years turning CRM chaos into structured reporting across building materials, property, and retail. I build dashboards, clean data, and deliver the numbers that drive real decisions.
+                Five years turning CRM chaos into structured reporting across building materials, property, and retail. I have managed pipelines across multiple platforms, built reporting workflows from scratch, and helped teams make faster decisions with better data.
             </p>
             <div class="hero-links">
-                <a href="index.html" class="btn-primary" target="_blank">View Resume</a>
+                <a href="index.html" class="btn-primary">View Full Resume</a>
                 <a href="https://linkedin.com/in/tommy-nguyen-a145b414b" target="_blank" class="btn-outline">LinkedIn</a>
-                <a href="https://github.com/Tommy-Nguyen-Stonera" target="_blank" class="btn-outline">GitHub</a>
-                <a href="mailto:tommyng.183@gmail.com" class="btn-outline">Email Me</a>
+                <a href="mailto:tommyng.183@gmail.com" class="btn-outline">Contact Me</a>
             </div>
         </div>
     </div>
 
     <div class="stats">
-        <div class="stat"><div class="number">9</div><div class="label">Projects</div></div>
-        <div class="stat"><div class="number">5+</div><div class="label">Years Experience</div></div>
-        <div class="stat"><div class="number">3</div><div class="label">Industries</div></div>
-        <div class="stat"><div class="number">4</div><div class="label">Roles Held</div></div>
+        <div class="stat"><div class="number">5+</div><div class="label">Years in Sales Ops</div></div>
+        <div class="stat"><div class="number">200+</div><div class="label">Accounts Managed</div></div>
+        <div class="stat"><div class="number">$1M+</div><div class="label">Pipeline Decisions</div></div>
+        <div class="stat"><div class="number">9</div><div class="label">Data Projects</div></div>
     </div>
 
     <div class="content">
-        <div class="section-title">Projects</div>
+
+        <div class="section-title">Work Experience</div>
+        <p class="section-subtitle">Key roles across building materials, property, and retail</p>
+
+        <div class="experience-section">
+            <div class="exp-card">
+                <div class="exp-header">
+                    <span class="exp-company">Showtile</span>
+                    <span class="exp-dates">Dec 2023 - Present</span>
+                </div>
+                <div class="exp-title">Sales Operations Analyst</div>
+                <div class="exp-context">Tiles, Stone & Pavers, Sydney</div>
+                <div class="exp-highlights">Own all sales operations data across MYOB and Xero for 200+ accounts. Track international procurement, run showroom marketing through Google Ads and Analytics, and prepare management reports on performance and stock levels.</div>
+            </div>
+
+            <div class="exp-card">
+                <div class="exp-header">
+                    <span class="exp-company">HTT Flooring</span>
+                    <span class="exp-dates">Jul 2022 - Dec 2023</span>
+                </div>
+                <div class="exp-title">Account Manager</div>
+                <div class="exp-context">B2B Flooring Wholesale, Sydney</div>
+                <div class="exp-highlights">Built KPI frameworks across BCI Central, EstimateOne, and Monday.com for a $1M+ B2B portfolio. Managed CRM data across 3 platforms for 300+ accounts with 98% accuracy.</div>
+            </div>
+
+            <div class="exp-card">
+                <div class="exp-header">
+                    <span class="exp-company">Royal Crystal Group</span>
+                    <span class="exp-dates">May 2020 - Jul 2022</span>
+                </div>
+                <div class="exp-title">Sales Representative & Business Development</div>
+                <div class="exp-context">International B2B, Vietnam (Remote from Australia)</div>
+                <div class="exp-highlights">Produced competitor intelligence across 20+ brands. Managed cross-border operations across 2 time zones. Led the Sydney Build trade event, managing a $15K budget and generating 50+ leads.</div>
+            </div>
+
+            <div class="exp-card">
+                <div class="exp-header">
+                    <span class="exp-company">Spire Property Group</span>
+                    <span class="exp-dates">Dec 2020 - Mar 2023</span>
+                </div>
+                <div class="exp-title">Key Account Manager</div>
+                <div class="exp-context">Property Sector, Sydney (Concurrent)</div>
+                <div class="exp-highlights">Generated weekly pipeline dashboards for 8 key accounts ($2M+). Delivered sales performance presentations to C-suite that influenced $500K+ in quarterly resource allocation.</div>
+            </div>
+        </div>
+
+        <div class="section-title">Analytics Portfolio</div>
+        <p class="section-subtitle">Real datasets, real analysis - each project includes an interactive report you can view in your browser</p>
 
         <div class="projects-grid">
             <div class="project-card reveal">
                 <span class="tag tag-sql">SQL</span>
-                <h3>Retail Business Analysis</h3>
-                <p>50K+ pizza retail transactions. Revenue trends, discount impact, customer segments, employee performance across 7 T-SQL queries.</p>
+                <h3>Retail Sales Performance</h3>
+                <div class="insight">Found that discounts over 50% lose money across all categories</div>
+                <p>Analysed 50K+ retail transactions to uncover revenue trends, discount impact, and which customer segments generate the most profit.</p>
                 <div class="links">
-                    <a href="https://github.com/Tommy-Nguyen-Stonera/sql-retail-business-analysis" target="_blank">Code</a>
-                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-retail-business-analysis/main/SQL%20Retail%20Business%20Analysis%20Report.html" target="_blank">Report</a>
+                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-retail-business-analysis/main/SQL%20Retail%20Business%20Analysis%20Report.html" target="_blank">View Analysis</a>
+                    <a href="https://github.com/Tommy-Nguyen-Stonera/sql-retail-business-analysis" target="_blank">Source</a>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <span class="tag tag-sql">SQL</span>
-                <h3>AU Building Approvals</h3>
-                <p>16 years of ABS data across all states. Victoria leads at 31% market share, NSW fell 41% from peak. Seasonal and dwelling type analysis.</p>
+                <h3>AU Construction Market</h3>
+                <div class="insight">Victoria leads with 31% of national approvals, NSW fell 41% from peak</div>
+                <p>16 years of government data showing where construction is growing and shrinking across Australia. Directly relevant to building materials sales strategy.</p>
                 <div class="links">
-                    <a href="https://github.com/Tommy-Nguyen-Stonera/sql-au-building-approvals" target="_blank">Code</a>
-                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-au-building-approvals/main/report/au_building_approvals_report.html" target="_blank">Report</a>
+                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-au-building-approvals/main/report/au_building_approvals_report.html" target="_blank">View Analysis</a>
+                    <a href="https://github.com/Tommy-Nguyen-Stonera/sql-au-building-approvals" target="_blank">Source</a>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <span class="tag tag-sql">SQL</span>
-                <h3>AU Building Activity</h3>
-                <p>15 years of quarterly ABS data. 87% growth in current prices but near-zero real growth. Pipeline analysis across all states.</p>
+                <h3>AU Building Pipeline</h3>
+                <div class="insight">87% spending growth was inflation, real output barely moved since 2018</div>
+                <p>15 years of quarterly building activity. Tracks what gets started, built, and stuck in the pipeline. Identified the post-COVID pipeline jam across all states.</p>
                 <div class="links">
-                    <a href="https://github.com/Tommy-Nguyen-Stonera/sql-au-building-activity" target="_blank">Code</a>
-                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-au-building-activity/main/report.html" target="_blank">Report</a>
+                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-au-building-activity/main/report.html" target="_blank">View Analysis</a>
+                    <a href="https://github.com/Tommy-Nguyen-Stonera/sql-au-building-activity" target="_blank">Source</a>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <span class="tag tag-sql">SQL</span>
-                <h3>US Construction Spending</h3>
-                <p>24 years of Census/FRED data. GFC crashed spending 37%, recovery took a decade. COVID barely registered then triggered record growth.</p>
+                <h3>US Construction Trends</h3>
+                <div class="insight">GFC wiped 64% of residential spending, recovery took a full decade</div>
+                <p>24 years of monthly data from the US Census Bureau. How construction spending behaves through boom, bust, and recovery cycles.</p>
                 <div class="links">
-                    <a href="https://github.com/Tommy-Nguyen-Stonera/sql-us-construction-spending" target="_blank">Code</a>
-                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-us-construction-spending/main/report.html" target="_blank">Report</a>
+                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-us-construction-spending/main/report.html" target="_blank">View Analysis</a>
+                    <a href="https://github.com/Tommy-Nguyen-Stonera/sql-us-construction-spending" target="_blank">Source</a>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <span class="tag tag-python">Python</span>
-                <h3>Construction Spending Analysis</h3>
-                <p>FRED data analysed with Pandas. Sector trends, GFC impact, private vs public spending, seasonal patterns and growth rates.</p>
+                <h3>Spending Sector Breakdown</h3>
+                <div class="insight">Private spending is far more volatile than public through downturns</div>
+                <p>FRED data broken down by sector, funding type, and growth rate. Shows which parts of construction are growing and which are stalling.</p>
                 <div class="links">
-                    <a href="https://github.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis" target="_blank">Code</a>
-                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis/main/report.html" target="_blank">Report</a>
+                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis/main/report.html" target="_blank">View Analysis</a>
+                    <a href="https://github.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis" target="_blank">Source</a>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <span class="tag tag-python">Python</span>
-                <h3>Housing Feature Impact</h3>
-                <p>Ames Housing data. How building materials and finishes drive property value. Kitchen quality upgrade adds $80K+ to median price.</p>
+                <h3>What Drives Property Value</h3>
+                <div class="insight">Kitchen quality upgrade from average to excellent adds $80K+</div>
+                <p>Which building materials and finishes have the biggest impact on sale price. Useful for anyone advising clients on material selection.</p>
                 <div class="links">
-                    <a href="https://github.com/Tommy-Nguyen-Stonera/python-housing-features-analysis" target="_blank">Code</a>
-                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-housing-features-analysis/main/report.html" target="_blank">Report</a>
+                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-housing-features-analysis/main/report.html" target="_blank">View Analysis</a>
+                    <a href="https://github.com/Tommy-Nguyen-Stonera/python-housing-features-analysis" target="_blank">Source</a>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <span class="tag tag-python">Python</span>
-                <h3>Home Furnishings Market</h3>
-                <p>5,000 Amazon home improvement listings. Pricing, brand dominance, discount impact, and seller concentration analysis.</p>
+                <h3>Market Pricing Analysis</h3>
+                <div class="insight">A small number of brands dominate market share across all categories</div>
+                <p>5,000 home improvement product listings analysed for pricing, brand concentration, discount impact, and competitive positioning.</p>
                 <div class="links">
-                    <a href="https://github.com/Tommy-Nguyen-Stonera/python-home-furnishings-market" target="_blank">Code</a>
-                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-home-furnishings-market/main/report.html" target="_blank">Report</a>
+                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-home-furnishings-market/main/report.html" target="_blank">View Analysis</a>
+                    <a href="https://github.com/Tommy-Nguyen-Stonera/python-home-furnishings-market" target="_blank">Source</a>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <span class="tag tag-python">Python</span>
                 <h3>Customer Sentiment Analysis</h3>
-                <p>8,000+ Home Depot reviews. VADER sentiment scoring, complaint themes, category satisfaction, manufacturer rankings.</p>
+                <div class="insight">Quality and durability is the number one complaint at 41% of negative reviews</div>
+                <p>8,000+ customer reviews scored for sentiment. Complaint themes, praise themes, and satisfaction by category and manufacturer.</p>
                 <div class="links">
-                    <a href="https://github.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis" target="_blank">Code</a>
-                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis/main/report.html" target="_blank">Report</a>
+                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis/main/report.html" target="_blank">View Analysis</a>
+                    <a href="https://github.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis" target="_blank">Source</a>
                 </div>
             </div>
 
             <div class="project-card reveal">
                 <span class="tag tag-powerbi">Power BI</span>
-                <h3>Pizza Retail Dashboard</h3>
-                <p>Interactive Power BI dashboard for sales KPIs, product mix, order trends and business performance analysis.</p>
+                <h3>Retail Sales Dashboard</h3>
+                <div class="insight">Interactive dashboard for sales KPIs and product performance</div>
+                <p>Power BI dashboard tracking revenue, product mix, order patterns, and business performance across time periods.</p>
                 <div class="links">
-                    <a href="https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis" target="_blank">Code</a>
-                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis/main/Pizza%20Business%20Analysis%20Report.html" target="_blank">Report</a>
+                    <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis/main/Pizza%20Business%20Analysis%20Report.html" target="_blank">View Analysis</a>
+                    <a href="https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis" target="_blank">Source</a>
                 </div>
             </div>
         </div>
@@ -355,7 +415,7 @@
                 <p>SQL, Power BI, Python, Excel, KPI Dashboards, Data Visualisation</p>
             </div>
             <div class="skill-group">
-                <h4>CRM & Sales Platforms</h4>
+                <h4>CRM & Platforms</h4>
                 <p>BCI Central, EstimateOne, Monday.com, MYOB, Xero</p>
             </div>
             <div class="skill-group">
