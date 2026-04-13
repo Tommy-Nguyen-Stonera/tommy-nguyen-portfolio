@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tommy Nguyen - Sales Operations Analyst - Portfolio</title>
+    <title>Tommy Nguyen - Data Analyst - Portfolio</title>
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -15,6 +15,24 @@
             color: #2d2d2d;
             line-height: 1.65;
             -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Profile photo ── */
+        .hero-photo {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid rgba(255,255,255,0.35);
+            margin: 0 auto 20px;
+            flex-shrink: 0;
+        }
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
         }
 
         /* ── Scroll reveal ── */
@@ -225,13 +243,6 @@
         .job-card:hover .job-toggle-hint { color: #1e5080; }
 
         .job-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(.22,1,.36,1), opacity 0.4s;
-            opacity: 0;
-        }
-        .job-details.open {
-            max-height: 500px;
             opacity: 1;
         }
         .job-details-inner {
@@ -509,8 +520,11 @@
     <!-- ── Hero ── -->
     <header class="hero">
         <div class="hero-inner">
+            <div class="hero-photo">
+                <img src="assets/profile.jpg" alt="Tommy Nguyen" />
+            </div>
             <h1>TOMMY NGUYEN</h1>
-            <div class="hero-title">Sales Operations Analyst</div>
+            <div class="hero-title">Data Analyst</div>
             <div class="hero-contact">
                 <span>0456 183 979</span>
                 <a href="mailto:tommyng.183@gmail.com">tommyng.183@gmail.com</a>
@@ -521,7 +535,7 @@
                 <a href="https://github.com/Tommy-Nguyen-Stonera" target="_blank" rel="noopener">GitHub</a>
             </div>
             <p class="hero-intro">
-                Five years in building materials, property, and retail - turning messy CRM systems into reports that actually get used. I got tired of watching teams make decisions on gut feel when the data was right there, so I started building the dashboards and workflows myself. Now I'm looking for a Sales Analyst role where that's the whole job.
+                SQL, Python, and Power BI analyst with five years of hands-on experience across building materials, property, and retail. Analytics practice built from scratch: pipeline dashboards, CRM data management, KPI reporting, and workflow automation across four industries. Background in construction supply means the data makes sense in context — procurement cycles, pricing trends, and what a slow quarter actually looks like from the floor.
             </p>
         </div>
     </header>
@@ -537,7 +551,7 @@
 
                 <!-- Showtile -->
                 <div class="timeline-item reveal">
-                    <div class="job-card" onclick="toggleJob(this)">
+                    <div class="job-card" >
                         <div class="job-card-header">
                             <div>
                                 <div class="job-company">Showtile</div>
@@ -546,7 +560,6 @@
                             </div>
                             <div class="job-dates">Dec 2023 - Present</div>
                         </div>
-                        <div class="job-toggle-hint">Click to see details</div>
                         <div class="job-details">
                             <div class="job-details-inner">
                                 <div class="job-highlight">Manage sales operations data and invoice reconciliation across MYOB and Xero for 200+ accounts - fully autonomous.</div>
@@ -560,7 +573,7 @@
 
                 <!-- HTT Flooring -->
                 <div class="timeline-item reveal">
-                    <div class="job-card" onclick="toggleJob(this)">
+                    <div class="job-card" >
                         <div class="job-card-header">
                             <div>
                                 <div class="job-company">HTT Flooring</div>
@@ -569,7 +582,6 @@
                             </div>
                             <div class="job-dates">Jul 2022 - Dec 2023</div>
                         </div>
-                        <div class="job-toggle-hint">Click to see details</div>
                         <div class="job-details">
                             <div class="job-details-inner">
                                 <div class="job-highlight">Sourced leads and built KPI frameworks across BCI Central, EstimateOne, and Monday.com for a $1M+ B2B portfolio.</div>
@@ -583,7 +595,7 @@
 
                 <!-- Royal Crystal Group -->
                 <div class="timeline-item reveal">
-                    <div class="job-card" onclick="toggleJob(this)">
+                    <div class="job-card" >
                         <div class="job-card-header">
                             <div>
                                 <div class="job-company">Royal Crystal Group</div>
@@ -592,7 +604,6 @@
                             </div>
                             <div class="job-dates">May 2020 - Jul 2022</div>
                         </div>
-                        <div class="job-toggle-hint">Click to see details</div>
                         <div class="job-details">
                             <div class="job-details-inner">
                                 <div class="job-highlight">Produced competitor intelligence across 20+ flooring brands - insights led to 12% margin improvement.</div>
@@ -605,7 +616,7 @@
 
                 <!-- Spire Property Group -->
                 <div class="timeline-item reveal">
-                    <div class="job-card" onclick="toggleJob(this)">
+                    <div class="job-card" >
                         <div class="job-card-header">
                             <div>
                                 <div class="job-company">Spire Property Group</div>
@@ -614,7 +625,6 @@
                             </div>
                             <div class="job-dates">Dec 2020 - Mar 2023</div>
                         </div>
-                        <div class="job-toggle-hint">Click to see details</div>
                         <div class="job-details">
                             <div class="job-details-inner">
                                 <div class="job-highlight">Generated weekly pipeline dashboards for 8 key accounts ($2M+) - preserved $350K revenue through early risk detection.</div>
@@ -636,12 +646,14 @@
             <h2 class="section-title reveal">Projects</h2>
             <div class="section-divider reveal"></div>
 
-            <div class="projects-grid">
+            <div style="margin-bottom:12px;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1e5080;">SQL</div>
+            <div class="projects-grid" style="margin-bottom:40px;">
 
                 <div class="project-card reveal">
                     <span class="project-tag tag-sql">SQL</span>
                     <div class="project-name">Retail Business Analysis</div>
-                    <div class="project-desc">50K+ retail transactions - revenue trends, discount impact, customer segments</div>
+                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">T-SQL · CTEs · Window Functions · Dynamic PIVOT</div>
+                    <div class="project-desc"><strong>Question:</strong> At which discount tier does each product category shift from profit to loss?<br><br><strong>Key results:</strong> Discounts above 50% produce losses across all categories. Technology is the top profit driver for Consumer and Corporate segments even though it is not always the top revenue category.</div>
                     <div class="project-links">
                         <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-retail-business-analysis/main/SQL%20Retail%20Business%20Analysis%20Report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
                         <a href="https://github.com/Tommy-Nguyen-Stonera/sql-retail-business-analysis" target="_blank" rel="noopener" class="pill-code">Source Code</a>
@@ -652,7 +664,8 @@
                 <div class="project-card reveal">
                     <span class="project-tag tag-sql">SQL</span>
                     <div class="project-name">AU Building Approvals</div>
-                    <div class="project-desc">16 years of ABS data - state trends, dwelling types, seasonal patterns</div>
+                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">T-SQL · LAG() · Conditional Aggregation · Seasonal PIVOT</div>
+                    <div class="project-desc"><strong>Question:</strong> Which states are gaining construction market share, and which are declining?<br><br><strong>Key results:</strong> Victoria leads with 31% of national approvals vs NSW at 28%. NSW has fallen 41% from its 2016 peak. Only Tasmania and South Australia grew between 2015-2019 and 2020-2024.</div>
                     <div class="project-links">
                         <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-au-building-approvals/main/report/au_building_approvals_report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
                         <a href="https://github.com/Tommy-Nguyen-Stonera/sql-au-building-approvals" target="_blank" rel="noopener" class="pill-code">Source Code</a>
@@ -663,7 +676,8 @@
                 <div class="project-card reveal">
                     <span class="project-tag tag-sql">SQL</span>
                     <div class="project-name">AU Building Activity</div>
-                    <div class="project-desc">15 years quarterly data - starts, completions, pipeline across all states</div>
+                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">T-SQL · Starts-to-Completions Ratio · PIVOT · Rolling Averages</div>
+                    <div class="project-desc"><strong>Question:</strong> Is Australia's construction pipeline building backlog or clearing it?<br><br><strong>Key results:</strong> Starts-to-completions ratio spiked to 1.34 in 2021 (COVID pipeline jam). National pipeline peaked at 244,100 dwellings in Q3 2022. Victoria overtook NSW as the largest construction market.</div>
                     <div class="project-links">
                         <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-au-building-activity/main/report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
                         <a href="https://github.com/Tommy-Nguyen-Stonera/sql-au-building-activity" target="_blank" rel="noopener" class="pill-code">Source Code</a>
@@ -674,7 +688,8 @@
                 <div class="project-card reveal">
                     <span class="project-tag tag-sql">SQL</span>
                     <div class="project-name">US Construction Spending</div>
-                    <div class="project-desc">24 years of Census/FRED data - GFC impact, sector shifts, recovery analysis</div>
+                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">T-SQL · LAG() · Peak-to-Trough Analysis · PIVOT · Rolling Averages</div>
+                    <div class="project-desc"><strong>Question:</strong> How did the GFC and COVID compare in terms of construction spending impact and recovery speed?<br><br><strong>Key results:</strong> GFC: total spending fell 37%, residential fell 64%, took a decade to recover. COVID: only a 2.8% dip followed by the fastest growth in the dataset at +14.9% in 2022.</div>
                     <div class="project-links">
                         <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-us-construction-spending/main/report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
                         <a href="https://github.com/Tommy-Nguyen-Stonera/sql-us-construction-spending" target="_blank" rel="noopener" class="pill-code">Source Code</a>
@@ -682,21 +697,28 @@
                     </div>
                 </div>
 
+            </div>
+
+            <div style="margin-bottom:12px;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1e5080;">Python</div>
+            <div class="projects-grid" style="margin-bottom:40px;">
+
                 <div class="project-card reveal">
                     <span class="project-tag tag-python">Python</span>
-                    <div class="project-name">Construction Spending</div>
-                    <div class="project-desc">FRED data - sector trends, GFC impact, private vs public spending patterns</div>
+                    <div class="project-name">Customer Sentiment Analysis</div>
+                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">Python · VADER · TextBlob · NLP · pandas · matplotlib</div>
+                    <div class="project-desc"><strong>Question:</strong> Does what customers write in a review match the star rating they give?<br><br><strong>Key results:</strong> VADER sentiment correlates 0.681 with star ratings. Quality and durability is the #1 complaint (41% of negative reviews). 3.9% of reviews show text-star mismatches. iFit has a 43% negative review rate.</div>
                     <div class="project-links">
-                        <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis/main/report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis" target="_blank" rel="noopener" class="pill-code">Source Code</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis/raw/main/construction_spending.csv" target="_blank" rel="noopener" class="pill-data">Dataset</a>
+                        <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis/main/report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
+                        <a href="https://github.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis" target="_blank" rel="noopener" class="pill-code">Source Code</a>
+                        <a href="https://github.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis/raw/main/data/home_depot_reviews.csv" target="_blank" rel="noopener" class="pill-data">Dataset</a>
                     </div>
                 </div>
 
                 <div class="project-card reveal">
                     <span class="project-tag tag-python">Python</span>
                     <div class="project-name">Housing Feature Impact</div>
-                    <div class="project-desc">How building materials and finishes drive property value</div>
+                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">Python · pandas · matplotlib · Statistical Comparison</div>
+                    <div class="project-desc"><strong>Question:</strong> Which building materials and finishes have the biggest dollar impact on sale price?<br><br><strong>Key results:</strong> Stone masonry veneer adds $102K vs no veneer. Kitchen upgrade from Average to Excellent adds $80K+. Poured concrete foundation is $43K above cinder block.</div>
                     <div class="project-links">
                         <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-housing-features-analysis/main/report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
                         <a href="https://github.com/Tommy-Nguyen-Stonera/python-housing-features-analysis" target="_blank" rel="noopener" class="pill-code">Source Code</a>
@@ -707,33 +729,40 @@
                 <div class="project-card reveal">
                     <span class="project-tag tag-python">Python</span>
                     <div class="project-name">Home Furnishings Market</div>
-                    <div class="project-desc">Amazon product data - pricing, brands, ratings, market concentration</div>
+                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">Python · pandas · seaborn · matplotlib · Market Analysis</div>
+                    <div class="project-desc"><strong>Question:</strong> How concentrated is the Amazon home improvement marketplace, and does Prime status drive better outcomes?<br><br><strong>Key results:</strong> Top 10 sellers hold 15.8% of listings. Prime products rate 4.06 vs 4.18 for non-Prime. Discounts above 50% generate 35% more reviews.</div>
                     <div class="project-links">
                         <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-home-furnishings-market/main/report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
                         <a href="https://github.com/Tommy-Nguyen-Stonera/python-home-furnishings-market" target="_blank" rel="noopener" class="pill-code">Source Code</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/python-home-furnishings-market/raw/main/marketing_sample_for_amazon_com-amazon_home_improvement_data__20200101_20200331__5k_data.ldjson" target="_blank" rel="noopener" class="pill-data">Dataset</a>
-                    </div>
-                </div>
-
-                <div class="project-card reveal">
-                    <span class="project-tag tag-powerbi">Power BI</span>
-                    <div class="project-name">Pizza Retail Dashboard</div>
-                    <div class="project-desc">Interactive dashboard for sales KPIs, product mix, and order trends</div>
-                    <div class="project-links">
-                        <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis/main/Pizza%20Business%20Analysis%20Report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis" target="_blank" rel="noopener" class="pill-code">Source Code</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis/raw/main/data_pizza.xlsx" target="_blank" rel="noopener" class="pill-data">Dataset</a>
                     </div>
                 </div>
 
                 <div class="project-card reveal">
                     <span class="project-tag tag-python">Python</span>
-                    <div class="project-name">Customer Sentiment Analysis</div>
-                    <div class="project-desc">8,000+ Home Depot reviews - complaint themes, satisfaction patterns</div>
+                    <div class="project-name">US Construction Spending</div>
+                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">Python · pandas · matplotlib · seaborn · Time Series</div>
+                    <div class="project-desc"><strong>Question:</strong> Which sectors drove construction growth, and how did private vs public spending behave through economic cycles?<br><br><strong>Key results:</strong> Manufacturing and healthcare were the standout growth sectors. Private spending is far more volatile than public through downturns. Residential led the GFC collapse and the post-COVID bounce.</div>
                     <div class="project-links">
-                        <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis/main/report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis" target="_blank" rel="noopener" class="pill-code">Source Code</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis/raw/main/data/home_depot_reviews.csv" target="_blank" rel="noopener" class="pill-data">Dataset</a>
+                        <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis/main/report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
+                        <a href="https://github.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis" target="_blank" rel="noopener" class="pill-code">Source Code</a>
+                        <a href="https://github.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis/raw/main/construction_spending.csv" target="_blank" rel="noopener" class="pill-data">Dataset</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="margin-bottom:12px;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1e5080;">Power BI</div>
+            <div class="projects-grid">
+
+                <div class="project-card reveal">
+                    <span class="project-tag tag-powerbi">Power BI</span>
+                    <div class="project-name">Pizza Retail Dashboard</div>
+                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">Power BI · DAX · Excel · Interactive Dashboard</div>
+                    <div class="project-desc"><strong>Question:</strong> When do customers order, what do they order, and which products drive the most revenue?<br><br><strong>Key results:</strong> Friday is the highest revenue day. Classic category leads in both order count and revenue. Peak hours are 12-1pm and 5-7pm. Thanksgiving (27 Nov) was the single highest revenue day of the year.</div>
+                    <div class="project-links">
+                        <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis/main/Pizza%20Business%20Analysis%20Report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
+                        <a href="https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis" target="_blank" rel="noopener" class="pill-code">Source Code</a>
+                        <a href="https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis/raw/main/data_pizza.xlsx" target="_blank" rel="noopener" class="pill-data">Dataset</a>
                     </div>
                 </div>
 
@@ -752,14 +781,17 @@
                 <div class="edu-card reveal">
                     <div class="edu-degree">Master of Marketing</div>
                     <div class="edu-school">Western Sydney University</div>
+                    <div style="font-size:0.8rem;color:#aaa;margin-top:4px;">Jan 2022 - Jan 2024</div>
                 </div>
                 <div class="edu-card reveal">
                     <div class="edu-degree">Bachelor of Commerce, International Business</div>
                     <div class="edu-school">Macquarie University</div>
+                    <div style="font-size:0.8rem;color:#aaa;margin-top:4px;">2016 - 2019</div>
                 </div>
                 <div class="edu-card reveal">
                     <div class="edu-degree">Diploma of Commerce</div>
                     <div class="edu-school">SIBT Navitas, Sydney</div>
+                    <div style="font-size:0.8rem;color:#aaa;margin-top:4px;">2014 - 2015</div>
                 </div>
             </div>
         </div>
@@ -775,15 +807,8 @@
 
             <div class="certs-grid">
                 <div class="cert-item reveal"><span class="cert-dot"></span>Advanced Data Analytics - Job Ready Master</div>
-                <div class="cert-item reveal"><span class="cert-dot"></span>Basic Data Analytics - Job Ready Master</div>
                 <div class="cert-item reveal"><span class="cert-dot"></span>Google Analytics Individual Qualification</div>
                 <div class="cert-item reveal"><span class="cert-dot"></span>Data Visualization: Storytelling (LinkedIn Learning)</div>
-                <div class="cert-item reveal"><span class="cert-dot"></span>Google Ads Search Certification</div>
-                <div class="cert-item reveal"><span class="cert-dot"></span>Google Ads Display Certification</div>
-                <div class="cert-item reveal"><span class="cert-dot"></span>OMCA Certification for Digital Marketers</div>
-                <div class="cert-item reveal"><span class="cert-dot"></span>Marketing Research Professional - Sales & Marketing</div>
-                <div class="cert-item reveal"><span class="cert-dot"></span>Advertising on Facebook, Instagram, LinkedIn</div>
-                <div class="cert-item reveal"><span class="cert-dot"></span>Marketing on Twitter/X</div>
             </div>
         </div>
     </section>
@@ -839,37 +864,6 @@
             });
         })();
 
-        // ── Expandable Job Cards ──
-        function toggleJob(card) {
-            var details = card.querySelector('.job-details');
-            var hint = card.querySelector('.job-toggle-hint');
-            var timelineItem = card.closest('.timeline-item');
-            var isOpen = details.classList.contains('open');
-
-            // Close all other open cards first
-            document.querySelectorAll('.job-details.open').forEach(function (d) {
-                if (d !== details) {
-                    d.classList.remove('open');
-                    var otherCard = d.closest('.job-card');
-                    if (otherCard) {
-                        var otherHint = otherCard.querySelector('.job-toggle-hint');
-                        if (otherHint) otherHint.textContent = 'Click to see details';
-                    }
-                    var otherTimeline = d.closest('.timeline-item');
-                    if (otherTimeline) otherTimeline.classList.remove('active');
-                }
-            });
-
-            if (isOpen) {
-                details.classList.remove('open');
-                hint.textContent = 'Click to see details';
-                timelineItem.classList.remove('active');
-            } else {
-                details.classList.add('open');
-                hint.textContent = 'Click to collapse';
-                timelineItem.classList.add('active');
-            }
-        }
     </script>
 
 </body>
