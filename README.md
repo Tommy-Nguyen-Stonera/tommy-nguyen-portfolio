@@ -8,7 +8,7 @@ Bankstown NSW 2200 | [tommyng.183@gmail.com](mailto:tommyng.183@gmail.com) | [Li
 
 ## About
 
-Five years of experience across building materials, property, and retail. Analytics practice built from scratch: pipeline dashboards, CRM data management, KPI reporting, and workflow automation.
+Results-driven analyst with five years of experience across building materials, property, and retail. Proficient in SQL, Python, and Power BI, with a proven record of building analytics functions from the ground up using real project data. Experienced in developing pipeline dashboards, managing CRM data, delivering KPI reporting, and automating workflows. Combines hands-on industry knowledge in construction supply with strong data knowledge to generate insights that reflect real operational conditions, including procurement cycles, pricing trends, and seasonal performance.
 
 ---
 
