@@ -8,7 +8,7 @@ Bankstown NSW 2200 | [tommyng.183@gmail.com](mailto:tommyng.183@gmail.com) | [Li
 
 ## About
 
-Five years across building materials, property, and retail. Built the analytics practice from scratch — SQL, Python, and Power BI — across pipeline dashboards, CRM data, KPI reporting, and workflow automation. The construction supply background actually matters here: procurement delays, pricing pressure, and seasonal slowdowns are things I worked through operationally before they ever showed up in a dataset.
+Five years across building materials, property, and retail. Built the analytics practice from scratch using SQL, Python, and Power BI, covering pipeline dashboards, CRM data, KPI reporting, and workflow automation. The construction supply background actually matters here: procurement delays, pricing pressure, and seasonal slowdowns are things I worked through operationally before they ever showed up in a dataset.
 
 ---
 
