@@ -1,16 +1,14 @@
 # Tommy Nguyen - Portfolio
 
-**Sales Operations Analyst | CRM & Reporting | Data Analytics**
-
 Bankstown NSW 2200 | [tommyng.183@gmail.com](mailto:tommyng.183@gmail.com) | [LinkedIn](https://linkedin.com/in/tommy-nguyen-a145b414b)
 
-[View Online Resume](https://tommy-nguyen-stonera.github.io/tommy-nguyen-portfolio/portfolio.html)
+[View Online Portfolio](https://tommy-nguyen-stonera.github.io/tommy-nguyen-portfolio/Tommy-Portfolio.html)
 
 ---
 
 ## About
 
-Sales operations analyst with five years turning CRM chaos into structured reporting across building materials, property, and retail. Degree in marketing, hands-on analytics skills, and a track record of making sales ops actually work.
+Five years of experience across building materials, property, and retail. Analytics practice built from scratch: pipeline dashboards, CRM data management, KPI reporting, and workflow automation.
 
 ---
 
@@ -45,9 +43,8 @@ Sales operations analyst with five years turning CRM chaos into structured repor
 ## Skills
 
 - **Data & Analytics:** SQL, Power BI, Python, Excel, KPI Dashboards
-- **CRM & Sales Platforms:** BCI Central, EstimateOne, Monday.com, MYOB, Xero
-- **Sales Operations:** Pipeline Management, B2B Sales, Market Research
-- **Reporting:** Sales Reporting, PowerPoint Presentations, Performance Dashboards
+- **CRM Platforms:** BCI Central, EstimateOne, Monday.com, MYOB, Xero
+- **Reporting:** Pipeline Reporting, Performance Dashboards, PowerPoint Presentations
 
 ---
 
