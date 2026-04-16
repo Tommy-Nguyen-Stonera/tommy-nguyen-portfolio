@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tommy Nguyen - Data Analyst</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #2d2d2d;
+            line-height: 1.6;
+        }
+
+        .resume-container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            padding: 40px 50px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+
+        .contact-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px 24px;
+            font-size: 0.85rem;
+            color: #c8d6e5;
+        }
+
+        .contact-bar a {
+            color: #c8d6e5;
+            text-decoration: none;
+        }
+
+        .contact-bar a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .content {
+            padding: 35px 50px;
+        }
+
+        .section-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #0f3460;
+            border-bottom: 2px solid #0f3460;
+            padding-bottom: 6px;
+            margin-bottom: 16px;
+            margin-top: 30px;
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .career-profile {
+            font-size: 0.92rem;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        .competencies {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 30px;
+        }
+
+        .comp-item {
+            font-size: 0.88rem;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .comp-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #0f3460;
+        }
+
+        .comp-item strong {
+            color: #0f3460;
+        }
+
+        .job {
+            margin-bottom: 24px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 2px;
+        }
+
+        .job-company {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+
+        .job-dates {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .job-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #0f3460;
+            margin-bottom: 2px;
+        }
+
+        .job-context {
+            font-size: 0.82rem;
+            color: #888;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .job ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .job li {
+            font-size: 0.88rem;
+            color: #444;
+            padding: 3px 0 3px 16px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .job li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 11px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #0f3460;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 30px;
+        }
+
+        .project-item {
+            font-size: 0.88rem;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #0f3460;
+        }
+
+        .project-item strong {
+            color: #0f3460;
+        }
+
+        .project-item a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .project-item a:hover strong {
+            text-decoration: underline;
+        }
+
+        .project-item .label {
+            color: #0f3460;
+            font-weight: 700;
+        }
+
+        .project-item ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 4px;
+        }
+
+        .project-item li {
+            font-size: 0.88rem;
+            color: #444;
+            padding: 2px 0 2px 14px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .project-item li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #0f3460;
+        }
+
+        .edu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .edu-item .degree {
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .edu-item .school {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .certs-list {
+            list-style: none;
+            padding: 0;
+            columns: 2;
+            column-gap: 30px;
+        }
+
+        .certs-list li {
+            font-size: 0.85rem;
+            color: #444;
+            padding: 3px 0 3px 16px;
+            position: relative;
+            break-inside: avoid;
+        }
+
+        .certs-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #0f3460;
+        }
+
+        .portfolio-section {
+            text-align: center;
+            padding: 20px 50px 30px;
+        }
+
+        .portfolio-link {
+            display: inline-block;
+            background: #0f3460;
+            color: #fff;
+            padding: 10px 28px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: background 0.2s;
+        }
+
+        .portfolio-link:hover {
+            background: #1a1a2e;
+        }
+
+        @page {
+            margin: 0;
+        }
+
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            body {
+                background: #fff;
+                font-size: 88%;
+                line-height: 1.35;
+                padding: 10mm 14mm;
+            }
+
+            .resume-container {
+                box-shadow: none;
+                margin: 0;
+                max-width: 100%;
+            }
+
+            .header {
+                padding: 14px 35px;
+            }
+
+            .header h1 {
+                font-size: 1.7rem;
+                margin-bottom: 4px;
+            }
+
+            .contact-bar {
+                color: #fff;
+                gap: 4px 16px;
+            }
+
+            .contact-bar a {
+                color: #fff;
+            }
+
+            .content {
+                padding: 10px 35px;
+            }
+
+            .section-title {
+                margin-top: 13px;
+                margin-bottom: 8px;
+                padding-bottom: 3px;
+            }
+
+            .section-title:first-child {
+                margin-top: 0;
+            }
+
+            .career-profile {
+                font-size: 0.83rem;
+                line-height: 1.45;
+            }
+
+            .competencies {
+                gap: 4px 24px;
+            }
+
+            .comp-item {
+                font-size: 0.81rem;
+            }
+
+            .job {
+                margin-bottom: 15px;
+            }
+
+            .job li {
+                font-size: 0.81rem;
+                padding: 1px 0 1px 14px;
+                line-height: 1.35;
+            }
+
+            .job-context {
+                margin-bottom: 4px;
+            }
+
+            .projects-grid {
+                gap: 8px 20px;
+            }
+
+            .project-item {
+                font-size: 0.81rem;
+            }
+
+            .project-item ul {
+                margin-top: 2px;
+            }
+
+            .project-item li {
+                font-size: 0.81rem;
+                padding: 0 0 0 14px;
+                line-height: 1.35;
+            }
+
+            .edu-item {
+                font-size: 0.83rem;
+                padding: 2px 0;
+            }
+
+            .certs-list li {
+                font-size: 0.81rem;
+                padding: 1px 0 1px 14px;
+            }
+
+            .portfolio-section { display: none; }
+        }
+
+        @media (max-width: 650px) {
+            .header { padding: 30px 24px; }
+            .header h1 { font-size: 1.6rem; }
+            .content { padding: 24px; }
+            .competencies { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .contact-bar { flex-direction: column; align-items: center; gap: 4px; }
+            .job-header { flex-direction: column; }
+            .edu-item { flex-direction: column; }
+            .certs-list { columns: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <div class="header">
+            <h1>TOMMY NGUYEN</h1>
+            <div class="contact-bar">
+                <span>0456 183 979</span>
+                <a href="mailto:tommyng.183@gmail.com">tommyng.183@gmail.com</a>
+                <span>Bankstown NSW 2200</span>
+                <a href="https://linkedin.com/in/tommy-nguyen-a145b414b" target="_blank">LinkedIn</a>
+                <a href="https://github.com/Tommy-Nguyen-Stonera" target="_blank">GitHub</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section-title">Career Profile</div>
+            <p class="career-profile">
+                Data analyst with five years of experience in reporting, CRM data management, and performance analysis across building materials, property, and retail. Proficient in SQL, Python, Power BI, and Google Analytics (Individual Qualification certified), with public GitHub projects covering retail performance, construction market trends, customer sentiment, and housing data. Experienced building pipeline dashboards, presenting analysis to C-suite, and maintaining data accuracy across large account portfolios. Brings a track record of translating complex datasets into findings that management acts on, with strong discipline around data quality and clean reporting.
+            </p>
+
+            <div class="section-title">Skills</div>
+            <div class="competencies">
+                <div class="comp-item"><strong>Data & Analytics:</strong> SQL, Python, Power BI, Google Analytics, Excel, Data Visualisation</div>
+                <div class="comp-item"><strong>Reporting & Dashboards:</strong> KPI Dashboards, Pipeline Reporting, Performance Presentations, Data Quality</div>
+                <div class="comp-item"><strong>CRM & Platforms:</strong> BCI Central, EstimateOne, Monday.com, MYOB, Xero</div>
+                <div class="comp-item"><strong>Professional:</strong> Stakeholder Communication, Detail Oriented, Self-starter, Adaptable</div>
+            </div>
+
+            <div class="section-title">Employment History</div>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-company">Showtile</span>
+                    <span class="job-dates">December 2023 - Present</span>
+                </div>
+                <div class="job-title">Sales Operations Analyst</div>
+                <div class="job-context">Tiles, Stone & Pavers, Sydney, NSW</div>
+                <ul>
+                    <li>Redesigned and automated CRM data entry processes. Cut duplicate records and made pipeline reports reliable for management review.</li>
+                    <li>Tracked 15+ international procurement pipelines across supplier quotes and delivery schedules, cutting order mismatches by 30%.</li>
+                    <li>Managed sales data and invoice reconciliation across MYOB and Xero for 200+ accounts.</li>
+                    <li>Prepared monthly performance reports on sales trends and stock levels for senior management.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-company">HTT Flooring</span>
+                    <span class="job-dates">July 2022 - December 2023</span>
+                </div>
+                <div class="job-title">Account Manager</div>
+                <div class="job-context">B2B Flooring Wholesale, Sydney, NSW</div>
+                <ul>
+                    <li>Conducted territory analysis across 4 markets, found 35% of revenue concentrated in one region, rebalanced focus and grew portfolio by 15%.</li>
+                    <li>Administered CRM data across 3 platforms for 300+ B2B accounts, maintaining 98% data accuracy.</li>
+                    <li>Built reporting workflows across sales, warehouse, and logistics, eliminating 3 manual handoffs and cutting response time by 40%.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-company">Royal Crystal Group</span>
+                    <span class="job-dates">May 2020 - July 2022</span>
+                </div>
+                <div class="job-title">Sales Representative & Business Development</div>
+                <div class="job-context">International B2B, Flooring, Remote from Vietnam in Sydney</div>
+                <ul>
+                    <li>Produced competitor analysis across 20+ flooring brands. The pricing review that followed lifted margins by 12%.</li>
+                    <li>Managed cross-border operations across 2 time zones with a 95% on-time delivery rate.</li>
+                    <li>Led the Sydney Build trade event, managing a $15K budget and generating 50+ qualified leads.</li>
+                </ul>
+            </div>
+
+            <div class="job" style="page-break-before: always; padding-top: 12mm;">
+                <div class="job-header">
+                    <span class="job-company">Spire Property Group</span>
+                    <span class="job-dates">December 2020 - March 2023</span>
+                </div>
+                <div class="job-title">Key Account Manager</div>
+                <div class="job-context">Property, Sydney, NSW (Concurrent)</div>
+                <ul>
+                    <li>Built weekly pipeline dashboards for 8 key accounts ($2M+). Caught three at-risk accounts early and retained $350K in revenue.</li>
+                    <li>Delivered quarterly performance analysis to the C-suite. Findings influenced $500K+ in resource allocation decisions made by leadership each quarter.</li>
+                    <li>Kept CRM records at 99% accuracy across 100+ accounts.</li>
+                </ul>
+            </div>
+
+            <div class="section-title">Projects</div>
+            <div class="projects-grid">
+                <div class="project-item">
+                    <a href="https://github.com/Tommy-Nguyen-Stonera/sql-retail-business-analysis" target="_blank"><strong>SQL - Retail Business Analysis</strong></a><br>
+                    <span style="color:#666;font-size:0.82rem;">T-SQL, CTEs, Window Functions, Dynamic PIVOT</span>
+                    <ul>
+                        <li><span class="label">Question:</span> At which discount tier does each product category shift from profit to loss?</li>
+                        <li><span class="label">Key results:</span> Discounts above 50% produce losses across all categories. Technology is the top profit driver for Consumer and Corporate segments even though it is not always the top revenue category.</li>
+                    </ul>
+                </div>
+                <div class="project-item">
+                    <a href="https://github.com/Tommy-Nguyen-Stonera/sql-au-building-approvals" target="_blank"><strong>SQL - AU Building Approvals</strong></a><br>
+                    <span style="color:#666;font-size:0.82rem;">T-SQL, LAG(), Conditional Aggregation, Seasonal PIVOT</span>
+                    <ul>
+                        <li><span class="label">Question:</span> Which states are gaining construction market share, and which are declining?</li>
+                        <li><span class="label">Key results:</span> Victoria leads with 31% of national approvals vs NSW at 28%. NSW has fallen 41% from its 2016 peak. Only Tasmania and South Australia grew across both periods.</li>
+                    </ul>
+                </div>
+                <div class="project-item">
+                    <a href="https://github.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis" target="_blank"><strong>Python - Customer Sentiment Analysis</strong></a><br>
+                    <span style="color:#666;font-size:0.82rem;">Python, VADER, TextBlob, NLP, pandas, matplotlib</span>
+                    <ul>
+                        <li><span class="label">Question:</span> Does what customers write in a review match the star rating they give?</li>
+                        <li><span class="label">Key results:</span> VADER sentiment correlates 0.681 with star ratings. Quality and durability is the #1 complaint (41% of negative reviews). 3.9% of reviews show text-star mismatches.</li>
+                    </ul>
+                </div>
+                <div class="project-item">
+                    <a href="https://github.com/Tommy-Nguyen-Stonera/python-housing-features-analysis" target="_blank"><strong>Python - Housing Feature Impact</strong></a><br>
+                    <span style="color:#666;font-size:0.82rem;">Python, pandas, matplotlib, statistical comparison</span>
+                    <ul>
+                        <li><span class="label">Question:</span> Which building materials and finishes have the biggest dollar impact on sale price?</li>
+                        <li><span class="label">Key results:</span> Stone masonry veneer adds $102K vs no veneer. Kitchen upgrade from Average to Excellent adds $80K+. Poured concrete foundation is $43K above cinder block.</li>
+                    </ul>
+                </div>
+                <div class="project-item">
+                    <a href="https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis" target="_blank"><strong>Power BI - Pizza Retail Dashboard</strong></a><br>
+                    <span style="color:#666;font-size:0.82rem;">Power BI, DAX, Excel</span>
+                    <ul>
+                        <li><span class="label">Question:</span> When do customers order, what do they order, and which products drive the most revenue?</li>
+                        <li><span class="label">Key results:</span> Friday is the highest revenue day. Classic category leads in both order count and revenue. Peak hours are 12-1pm and 5-7pm.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-title">Education</div>
+            <div class="edu-item">
+                <div>
+                    <span class="degree">Master of Marketing</span>
+                    <span class="school"> &nbsp;-&nbsp; Western Sydney University</span>
+                </div>
+                <span class="job-dates">Jan 2022 - Jan 2024</span>
+            </div>
+            <div class="edu-item">
+                <div>
+                    <span class="degree">Bachelor of Commerce, International Business</span>
+                    <span class="school"> &nbsp;-&nbsp; Macquarie University</span>
+                </div>
+                <span class="job-dates">Feb 2016 - Nov 2019</span>
+            </div>
+            <div class="edu-item">
+                <div>
+                    <span class="degree">Diploma of Commerce</span>
+                    <span class="school"> &nbsp;-&nbsp; SIBT Navitas, Sydney</span>
+                </div>
+                <span class="job-dates">Feb 2014 - Dec 2015</span>
+            </div>
+
+            <div class="section-title">Certifications</div>
+            <ul class="certs-list">
+                <li>Google Analytics Individual Qualification</li>
+                <li>Data Visualization: Storytelling (LinkedIn Learning)</li>
+            </ul>
+        </div>
+
+        <div class="portfolio-section">
+            <a href="https://github.com/Tommy-Nguyen-Stonera" class="portfolio-link" target="_blank">View My Portfolio on GitHub</a>
+        </div>
+    </div>
+</body>
+</html>
