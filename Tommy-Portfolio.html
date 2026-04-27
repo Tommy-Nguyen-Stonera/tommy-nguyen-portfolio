@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Tommy Nguyen, Business and Data Analyst</title>
+<title>Tommy Nguyen, Analyst</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -870,7 +870,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 
     <div class="hero-grid">
       <div>
-        <div class="eyebrow reveal">Portfolio, Business and Data Analyst</div>
+        <div class="eyebrow reveal">Portfolio, Selected Work</div>
         <h1 class="name reveal">Tommy<br><span class="italic">Nguyen</span>.</h1>
         <p class="headline reveal d1">
           Five years of supplier pipeline, B2B account, and CRM work across <em>building materials</em>, property, and wholesale flooring. I sit at the seam between commercial teams and the data they rely on.
@@ -947,9 +947,8 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
       </div>
 
       <div class="about-body reveal d1">
-        <p>I work in <strong>SQL, Python, and Power BI</strong> on the technical side, and in <strong>requirements gathering, process mapping, and stakeholder translation</strong> on the business side. The same person ships the dashboard and writes the brief that explains what it means.</p>
+        <p>I work across <strong>SQL, Python, Power BI, and Google Analytics</strong> for the reporting and analysis layer, and across <strong>requirements gathering, process mapping, and stakeholder translation</strong> for everything that has to happen before a number ends up on a screen. The same person ships the report and writes the brief that explains what it means.</p>
         <p>My edge is industry context. Years on the commercial side of <strong>construction supply</strong> mean I read procurement cycles, pricing trends, and seasonal performance the way an operator would, not just the way the data labels them.</p>
-        <p>This portfolio is built for two job archetypes: <strong>Business Analyst</strong> roles that need someone who can elicit requirements and redesign workflows, and <strong>Data Analyst</strong> roles that need SQL, Python, and Power BI applied to a real business problem.</p>
         <div class="skill-grid">
           <div class="skill"><span>SQL, T-SQL</span><span class="lvl">●●●●●</span></div>
           <div class="skill"><span>Python, NLP</span><span class="lvl">●●●●○</span></div>
@@ -1129,7 +1128,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
       <div class="cta-links reveal d2">
         <a class="cta-btn" href="https://linkedin.com/in/tommy-nguyen-a145b414b" target="_blank" rel="noopener">LinkedIn <span class="arrow">/</span></a>
         <a class="cta-btn" href="https://github.com/Tommy-Nguyen-Stonera" target="_blank" rel="noopener">GitHub <span class="arrow">/</span></a>
-        <a class="cta-btn" href="https://pizza-retail-analysis.vercel.app" target="_blank" rel="noopener">Live dashboard <span class="arrow">/</span></a>
+        <a class="cta-btn" href="https://pizza-retail-analysis.vercel.app" target="_blank" rel="noopener">Live report <span class="arrow">/</span></a>
         <a class="cta-btn" href="mailto:tommyng.183@gmail.com">Email me <span class="arrow">/</span></a>
       </div>
     </div>
@@ -1237,8 +1236,8 @@ const projects = [
   },
   {
     cat: "Power BI",
-    title: "Pizza Retail Dashboard",
-    stack: "Power BI, DAX, Excel, Interactive Dashboard",
+    title: "Pizza Retail Report",
+    stack: "Power BI, DAX, Excel, Analysis Report",
     q: "When do customers order, what do they order, and which products drive the most revenue?",
     a: "Friday is the highest revenue day. Classic category leads in both order count and revenue. Peak hours are 12 to 1pm and 5 to 7pm. Thanksgiving (27 Nov) was the single highest revenue day of the year.",
     view: "https://pizza-retail-analysis.vercel.app",
@@ -1338,7 +1337,7 @@ const cmdItems = [
   { group: "Actions", icon: "@", title: "Email Tommy", sub: "mailto", action: () => window.location = 'mailto:tommyng.183@gmail.com' },
   { group: "Actions", icon: "in", title: "Open LinkedIn", sub: "external", action: () => window.open('https://linkedin.com/in/tommy-nguyen-a145b414b', '_blank') },
   { group: "Actions", icon: "gh", title: "Open GitHub", sub: "external", action: () => window.open('https://github.com/Tommy-Nguyen-Stonera', '_blank') },
-  { group: "Actions", icon: "Pz", title: "Open Pizza dashboard", sub: "external", action: () => window.open('https://pizza-retail-analysis.vercel.app', '_blank') },
+  { group: "Actions", icon: "Pz", title: "Open Pizza report", sub: "external", action: () => window.open('https://pizza-retail-analysis.vercel.app', '_blank') },
   { group: "Actions", icon: "T", title: "Toggle theme", sub: "light or dark", action: () => themeBtn.click() },
   ...projects.map((p, i) => ({
     group: "Projects", icon: p.cat === 'SQL' ? 'Sq' : p.cat === 'Python' ? 'Py' : 'BI',

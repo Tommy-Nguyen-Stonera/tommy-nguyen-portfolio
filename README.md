@@ -1,4 +1,4 @@
-# Tommy Nguyen, Business and Data Analyst
+# Tommy Nguyen, Analyst
 
 Bankstown NSW 2200, Sydney Australia. [tommyng.183@gmail.com](mailto:tommyng.183@gmail.com), [LinkedIn](https://linkedin.com/in/tommy-nguyen-a145b414b), [GitHub](https://github.com/Tommy-Nguyen-Stonera)
 
@@ -10,10 +10,7 @@ Bankstown NSW 2200, Sydney Australia. [tommyng.183@gmail.com](mailto:tommyng.183
 
 Five years of supplier pipeline, B2B account, and CRM work across building materials, property, and wholesale flooring. I sit at the seam between commercial teams and the data they rely on, mapping workflows, rebuilding reporting, and turning messy CRM and procurement records into something a sales floor can actually trust.
 
-This portfolio is built for two job archetypes:
-
-- **Business Analyst** roles that need someone who can elicit requirements, map As-Is and To-Be process, run gap analysis, and translate stakeholder pain into documented solutions.
-- **Data Analyst** and **Sales Operations** roles that need SQL, Python, Power BI, and Google Analytics applied to a real business problem.
+Comfortable across requirements gathering, process mapping, stakeholder translation, and the SQL, Python, Power BI, and Google Analytics work that turns those conversations into reporting.
 
 ---
 
@@ -41,7 +38,7 @@ This portfolio is built for two job archetypes:
 
 | Project | Description | Report |
 |---------|-------------|--------|
-| [Pizza Retail Dashboard](https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis) | Power BI model with DAX measures over a year of pizza retail orders. Live on Vercel. | [Live dashboard](https://pizza-retail-analysis.vercel.app) |
+| [Pizza Retail Report](https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis) | Power BI model with DAX measures over a year of pizza retail orders. Live on Vercel. | [Live report](https://pizza-retail-analysis.vercel.app) |
 
 ---
 
