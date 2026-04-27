@@ -1128,7 +1128,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
       <div class="cta-links reveal d2">
         <a class="cta-btn" href="https://linkedin.com/in/tommy-nguyen-a145b414b" target="_blank" rel="noopener">LinkedIn <span class="arrow">/</span></a>
         <a class="cta-btn" href="https://github.com/Tommy-Nguyen-Stonera" target="_blank" rel="noopener">GitHub <span class="arrow">/</span></a>
-        <a class="cta-btn" href="https://pizza-retail-analysis.vercel.app" target="_blank" rel="noopener">Live report <span class="arrow">/</span></a>
+        <a class="cta-btn" href="https://pizza-retail-analysis.vercel.app" target="_blank" rel="noopener">Power BI dashboard <span class="arrow">/</span></a>
         <a class="cta-btn" href="mailto:tommyng.183@gmail.com">Email me <span class="arrow">/</span></a>
       </div>
     </div>
@@ -1236,11 +1236,12 @@ const projects = [
   },
   {
     cat: "Power BI",
-    title: "Pizza Retail Report",
-    stack: "Power BI, DAX, Excel, Analysis Report",
+    title: "Pizza Retail Dashboard",
+    stack: "Power BI, DAX, Excel, Live Interactive Dashboard",
     q: "When do customers order, what do they order, and which products drive the most revenue?",
     a: "Friday is the highest revenue day. Classic category leads in both order count and revenue. Peak hours are 12 to 1pm and 5 to 7pm. Thanksgiving (27 Nov) was the single highest revenue day of the year.",
     view: "https://pizza-retail-analysis.vercel.app",
+    viewLabel: "Power BI dashboard",
     src: "https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis",
     data: "https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis/raw/main/data_pizza.xlsx"
   }
@@ -1257,7 +1258,7 @@ function renderProjects() {
       <p class="proj-q">${p.q}</p>
       <p class="proj-a">${p.a}</p>
       <div class="proj-links">
-        <a class="primary" href="${p.view}" target="_blank" rel="noopener">View report</a>
+        <a class="primary" href="${p.view}" target="_blank" rel="noopener">${p.viewLabel || 'View report'}</a>
         <a href="${p.src}" target="_blank" rel="noopener">Source</a>
         ${p.data ? `<a href="${p.data}" target="_blank" rel="noopener">Dataset</a>` : ''}
       </div>
@@ -1337,7 +1338,7 @@ const cmdItems = [
   { group: "Actions", icon: "@", title: "Email Tommy", sub: "mailto", action: () => window.location = 'mailto:tommyng.183@gmail.com' },
   { group: "Actions", icon: "in", title: "Open LinkedIn", sub: "external", action: () => window.open('https://linkedin.com/in/tommy-nguyen-a145b414b', '_blank') },
   { group: "Actions", icon: "gh", title: "Open GitHub", sub: "external", action: () => window.open('https://github.com/Tommy-Nguyen-Stonera', '_blank') },
-  { group: "Actions", icon: "Pz", title: "Open Pizza report", sub: "external", action: () => window.open('https://pizza-retail-analysis.vercel.app', '_blank') },
+  { group: "Actions", icon: "Pz", title: "Power BI dashboard", sub: "external", action: () => window.open('https://pizza-retail-analysis.vercel.app', '_blank') },
   { group: "Actions", icon: "T", title: "Toggle theme", sub: "light or dark", action: () => themeBtn.click() },
   ...projects.map((p, i) => ({
     group: "Projects", icon: p.cat === 'SQL' ? 'Sq' : p.cat === 'Python' ? 'Py' : 'BI',

@@ -38,7 +38,7 @@ Comfortable across requirements gathering, process mapping, stakeholder translat
 
 | Project | Description | Report |
 |---------|-------------|--------|
-| [Pizza Retail Report](https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis) | Power BI model with DAX measures over a year of pizza retail orders. Live on Vercel. | [Live report](https://pizza-retail-analysis.vercel.app) |
+| [Pizza Retail Dashboard](https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis) | Power BI model with DAX measures over a year of pizza retail orders. Live, interactive, embedded. | [Power BI dashboard](https://pizza-retail-analysis.vercel.app) |
 
 ---
 
