@@ -1,14 +1,19 @@
-# Tommy Nguyen - Portfolio
+# Tommy Nguyen, Business and Data Analyst
 
-Bankstown NSW 2200 | [tommyng.183@gmail.com](mailto:tommyng.183@gmail.com) | [LinkedIn](https://linkedin.com/in/tommy-nguyen-a145b414b)
+Bankstown NSW 2200, Sydney Australia. [tommyng.183@gmail.com](mailto:tommyng.183@gmail.com), [LinkedIn](https://linkedin.com/in/tommy-nguyen-a145b414b), [GitHub](https://github.com/Tommy-Nguyen-Stonera)
 
-[View Online Portfolio](https://tommy-nguyen-stonera.github.io/tommy-nguyen-portfolio/Tommy-Portfolio.html)
+[Open the live portfolio](https://tommy-nguyen-stonera.github.io/tommy-nguyen-portfolio/Tommy-Portfolio.html)
 
 ---
 
 ## About
 
-Results-driven analyst with five years of experience across building materials, property, and retail. Proficient in SQL, Python, and Power BI, with actual projects data record of building analytics functions from the ground up using real project data. Experienced in developing pipeline dashboards, managing CRM data, delivering KPI reporting, and automating workflows. Combines hands-on industry knowledge in construction supply with strong data knowledge to generate insights that reflect real operational conditions, including procurement cycles, pricing trends, and seasonal performance.
+Five years of supplier pipeline, B2B account, and CRM work across building materials, property, and wholesale flooring. I sit at the seam between commercial teams and the data they rely on, mapping workflows, rebuilding reporting, and turning messy CRM and procurement records into something a sales floor can actually trust.
+
+This portfolio is built for two job archetypes:
+
+- **Business Analyst** roles that need someone who can elicit requirements, map As-Is and To-Be process, run gap analysis, and translate stakeholder pain into documented solutions.
+- **Data Analyst** and **Sales Operations** roles that need SQL, Python, Power BI, and Google Analytics applied to a real business problem.
 
 ---
 
@@ -18,38 +23,47 @@ Results-driven analyst with five years of experience across building materials, 
 
 | Project | Description | Report |
 |---------|-------------|--------|
-| [Retail Business Analysis](https://github.com/Tommy-Nguyen-Stonera/sql-retail-business-analysis) | 50K+ pizza retail transactions, 7 T-SQL queries | [View Report](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-retail-business-analysis/main/SQL%20Retail%20Business%20Analysis%20Report.html) |
-| [AU Building Approvals](https://github.com/Tommy-Nguyen-Stonera/sql-au-building-approvals) | 16 years of ABS approval data across all states | [View Report](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-au-building-approvals/main/report/au_building_approvals_report.html) |
-| [AU Building Activity](https://github.com/Tommy-Nguyen-Stonera/sql-au-building-activity) | 15 years of quarterly ABS building activity data | [View Report](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-au-building-activity/main/report.html) |
-| [US Construction Spending](https://github.com/Tommy-Nguyen-Stonera/sql-us-construction-spending) | 24 years of Census/FRED data, 8 T-SQL queries | [View Report](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-us-construction-spending/main/report.html) |
+| [Retail Business Analysis](https://github.com/Tommy-Nguyen-Stonera/sql-retail-business-analysis) | T-SQL, CTEs, window functions, dynamic PIVOT. Discounts above 50% turn every category into a loss. | [Read report](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-retail-business-analysis/main/SQL%20Retail%20Business%20Analysis%20Report.html) |
+| [AU Building Approvals](https://github.com/Tommy-Nguyen-Stonera/sql-au-building-approvals) | 16 years of ABS approvals (2010 to 2025), 4,632 rows, 3.1M dwellings. VIC at 31% national share, NSW down 41% from peak. | [Read report](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-au-building-approvals/main/report/au_building_approvals_report.html) |
+| [AU Building Activity](https://github.com/Tommy-Nguyen-Stonera/sql-au-building-activity) | 15 years of quarterly ABS data. Starts-to-completions ratio peaked at 1.34 in the 2021 COVID jam. | [Read report](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-au-building-activity/main/report.html) |
+| [US Construction Spending](https://github.com/Tommy-Nguyen-Stonera/sql-us-construction-spending) | 24 years of FRED and Census monthly data. GFC dropped total spending 37%, COVID only 2.8%. | [Read report](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-us-construction-spending/main/report.html) |
 
 ### Python
 
 | Project | Description | Report |
 |---------|-------------|--------|
-| [Construction Spending Analysis](https://github.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis) | FRED data, sector trends, GFC impact | [View Report](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis/main/report.html) |
-| [Housing Feature Impact](https://github.com/Tommy-Nguyen-Stonera/python-housing-features-analysis) | Ames Housing data, materials driving property value | [View Report](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-housing-features-analysis/main/report.html) |
-| [Home Furnishings Market](https://github.com/Tommy-Nguyen-Stonera/python-home-furnishings-market) | Amazon product data, pricing and market analysis | [View Report](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-home-furnishings-market/main/report.html) |
-| [Customer Sentiment Analysis](https://github.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis) | 8,000+ Home Depot reviews, VADER sentiment | [View Report](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis/main/report.html) |
+| [Customer Sentiment Analysis](https://github.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis) | 8,199 Home Depot reviews scored with VADER and TextBlob. VADER correlates 0.681 with star ratings. | [Read report](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis/main/report.html) |
+| [Housing Feature Impact](https://github.com/Tommy-Nguyen-Stonera/python-housing-features-analysis) | Ames Housing, 2,930 properties. Stone veneer adds $102K. Excellent kitchen carries a $189K premium. | [Read report](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-housing-features-analysis/main/report.html) |
+| [Home Furnishings Market](https://github.com/Tommy-Nguyen-Stonera/python-home-furnishings-market) | 5,000 Amazon home improvement listings. Top 10 sellers hold 15.8% of listings. | [Read report](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-home-furnishings-market/main/report.html) |
+| [US Construction Spending](https://github.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis) | 14 years of monthly Census data, sector and public-vs-private breakdown. | [Read report](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis/main/report.html) |
 
 ### Power BI
 
 | Project | Description | Report |
 |---------|-------------|--------|
-| [Pizza Retail Dashboard](https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis) | Sales KPIs, product mix, order trends | [View Report](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis/main/Pizza%20Business%20Analysis%20Report.html) |
+| [Pizza Retail Dashboard](https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis) | Power BI model with DAX measures over a year of pizza retail orders. Live on Vercel. | [Live dashboard](https://pizza-retail-analysis.vercel.app) |
 
 ---
 
 ## Skills
 
-- **Data & Analytics:** SQL, Power BI, Python, Excel, KPI Dashboards
-- **CRM Platforms:** BCI Central, EstimateOne, Monday.com, MYOB, Xero
-- **Reporting:** Pipeline Reporting, Performance Dashboards, PowerPoint Presentations
+- **Business Analysis:** Requirements gathering, process mapping (As-Is, To-Be), gap analysis, workflow redesign, stakeholder management, change management, documentation
+- **Technical Engine:** SQL (T-SQL, CTEs, Window Functions), Python (pandas, NLP), Power BI, DAX, Excel, Google Analytics (IQ certified)
+- **Tools and Platforms:** MYOB, Xero, Monday.com, BCI Central, EstimateOne, CRM data governance, KPI dashboards, reporting automation
+- **Business Context:** B2B account management, supplier qualification, territory analysis, competitor analysis, building materials, wholesale flooring, property and construction
+- **Languages:** English, Vietnamese
 
 ---
 
 ## Education
 
-- Master of Marketing - Western Sydney University
-- Bachelor of Commerce (International Business) - Macquarie University
-- Diploma of Commerce - SIBT Navitas, Sydney
+- **Master of Marketing**, Western Sydney University, graduated Aug 2023. Distinctions in Business Analytics in Practice, Business Project, and Marketing Systems.
+- **Bachelor of Commerce, International Business**, Macquarie University, Feb 2016 to Nov 2019.
+- **Diploma of Commerce**, SIBT Navitas, Sydney, Feb 2014 to Dec 2015.
+
+---
+
+## Certifications
+
+- Google Analytics Individual Qualification (Google)
+- Data Visualization, Storytelling (LinkedIn Learning)

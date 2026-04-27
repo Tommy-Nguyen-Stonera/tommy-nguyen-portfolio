@@ -1,857 +1,1420 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tommy Nguyen - Portfolio</title>
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tommy Nguyen, Business and Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  /* Cool editorial palette, harmonised with the blue accent */
+  --bg: #F4F1EC;
+  --bg-2: #EAE5DB;
+  --bg-3: #1E2A44;
+  --bg-4: #2A3A5C;
+  --ink: #15233D;
+  --ink-2: #2E3A52;
+  --muted: #6B7689;
+  --line: #15233D;
+  --line-soft: #D4CFC2;
+  --accent: #3B5998;
+  --accent-2: #6B8CC7;
+  --gold: #C9A227;
+  --moss: #5F6B3A;
+  --ink-inv: #F4F1EC;
+  --ink-inv-2: #C7CEDB;
+  --line-dark: #35456A;
 
-        html { scroll-behavior: smooth; }
+  /* Text colours for sections that stay dark in both themes
+     (contact, footer, ticker, dark hover surfaces). These
+     do NOT flip in dark mode, so the navy backgrounds always
+     have readable light text. */
+  --on-dark: #F4F1EC;
+  --on-dark-muted: #C7CEDB;
+  --on-dark-faded: #8B95AD;
 
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: #eef2f7;
-            color: #2d2d2d;
-            line-height: 1.65;
-            -webkit-font-smoothing: antialiased;
-        }
+  --sql: #2E5E4E;
+  --py: #C9A227;
+  --bi: #3B5998;
 
-        /* ── Profile photo ── */
-        .hero-photo {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid rgba(255,255,255,0.35);
-            margin: 0 auto 20px;
-            flex-shrink: 0;
-        }
-        .hero-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top;
-            display: block;
-        }
+  --serif: "Fraunces", "Times New Roman", serif;
+  --display: "Instrument Serif", "Fraunces", serif;
+  --sans: "Inter", system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+}
 
-        /* ── Scroll reveal ── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(32px);
-            transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+[data-theme="dark"] {
+  --bg: #0F1829;
+  --bg-2: #17223A;
+  --bg-3: #0A1220;
+  --bg-4: #1E2A44;
+  --ink: #EEF1F7;
+  --ink-2: #C7CEDB;
+  --muted: #7A869F;
+  --line: #EEF1F7;
+  --line-soft: #2A3654;
+  --accent: #6B8CC7;
+  --accent-2: #9BB3DC;
+  --ink-inv: #0F1829;
+  --ink-inv-2: #7A869F;
+  --line-dark: #2A3654;
 
-        /* ── Hero ── */
-        .hero {
-            background: linear-gradient(145deg, #0d2b4a 0%, #1e5080 55%, #2a6aa8 100%);
-            color: #fff;
-            padding: 80px 24px 64px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.04) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.03) 0%, transparent 40%);
-            pointer-events: none;
-        }
-        .hero-inner { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            letter-spacing: 6px;
-            margin-bottom: 8px;
-        }
-        .hero-title {
-            font-size: 1.05rem;
-            color: #a8cceb;
-            letter-spacing: 2px;
-            font-weight: 400;
-            margin-bottom: 24px;
-        }
-        .hero-contact {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 6px 20px;
-            font-size: 0.85rem;
-            color: #c0d8ef;
-            margin-bottom: 32px;
-        }
-        .hero-contact a {
-            color: #c0d8ef;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .hero-contact a:hover { color: #fff; }
-        .hero-links {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 36px;
-        }
-        .hero-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 10px 24px;
-            border: 1.5px solid rgba(255,255,255,0.35);
-            border-radius: 50px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.25s;
-        }
-        .hero-links a:hover {
-            background: rgba(255,255,255,0.12);
-            border-color: rgba(255,255,255,0.6);
-            transform: translateY(-2px);
-        }
-        .hero-intro {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: #d4e4f2;
-            max-width: 640px;
-            margin: 0 auto;
-            font-style: italic;
-        }
+  --sql: #6DAE95;
+  --py: #E0B35F;
+  --bi: #6B8CC7;
+}
 
-        /* ── Section container ── */
-        .section {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 60px 24px;
-        }
-        .section-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #1e5080;
-            margin-bottom: 6px;
-        }
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #0d2b4a;
-            margin-bottom: 32px;
-        }
-        .section-divider {
-            width: 48px;
-            height: 3px;
-            background: #1e5080;
-            border-radius: 2px;
-            margin-bottom: 40px;
-        }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink-2);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .35s ease, color .35s ease;
+  overflow-x: hidden;
+}
 
-        /* ── Timeline / Jobs ── */
-        .timeline { position: relative; padding-left: 32px; }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 7px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, #1e5080 0%, #d0dce8 100%);
-        }
+::selection { background: var(--accent); color: var(--ink-inv); }
 
-        .timeline-item {
-            position: relative;
-            margin-bottom: 20px;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -32px;
-            top: 20px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: #f5f7fa;
-            border: 3px solid #1e5080;
-            z-index: 1;
-            transition: background 0.3s, transform 0.3s;
-        }
-        .timeline-item.active::before,
-        .timeline-item:hover::before {
-            background: #1e5080;
-            transform: scale(1.15);
-        }
+/* Subtle paper noise */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none;
+  opacity: .4;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1  0 0 0 0 0.09  0 0 0 0 0.08  0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  z-index: 1;
+}
+[data-theme="dark"] body::before { opacity: .25; mix-blend-mode: screen; }
 
-        .job-card {
-            background: #f5f7fa;
-            border-radius: 10px;
-            padding: 24px 28px;
-            border: 1px solid #e8ecf1;
-            transition: box-shadow 0.3s, border-color 0.3s;
-            position: relative;
-        }
-        .job-card:hover {
-            box-shadow: 0 6px 24px rgba(30,80,128,0.1);
-            border-color: #b8cfe0;
-        }
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.wrap { max-width: 1440px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 2; }
+@media (max-width: 720px) { .wrap { padding: 0 20px; } }
 
-        .job-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 4px;
-        }
-        .job-company {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #0d2b4a;
-        }
-        .job-dates {
-            font-size: 0.8rem;
-            color: #888;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-        .job-role {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #1e5080;
-            margin: 2px 0;
-        }
-        .job-industry {
-            font-size: 0.82rem;
-            color: #999;
-            margin-bottom: 4px;
-        }
-        .job-details {
-            opacity: 1;
-        }
-        .job-details-inner {
-            padding-top: 16px;
-            margin-top: 16px;
-            border-top: 1px solid #eef1f5;
-        }
-        .job-highlight {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 6px 0;
-            font-size: 0.88rem;
-            color: #444;
-            line-height: 1.6;
-        }
-        .job-highlight::before {
-            content: '';
-            flex-shrink: 0;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #1e5080;
-            margin-top: 9px;
-        }
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
+  position: sticky; top: 0;
+  z-index: 50;
+  padding: 18px 0;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s;
+}
+.nav.scrolled { border-bottom-color: var(--line-soft); }
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px;
+}
+.brand {
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  display: flex; align-items: baseline; gap: 8px;
+  text-decoration: none;
+}
+.brand .dot { color: var(--accent); font-size: 28px; line-height: 0; }
+.brand .tag { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-left: 6px; }
 
-        /* ── Projects ── */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
+.nav-links {
+  display: flex; gap: 4px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.nav-links a {
+  color: var(--ink-2);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition: background-color .2s, color .2s;
+  position: relative;
+}
+.nav-links a:hover { background: var(--bg-2); color: var(--ink); }
+.nav-links a .num { color: var(--muted); margin-right: 6px; }
+@media (max-width: 860px) { .nav-links { display: none; } }
 
-        .project-card {
-            background: #f5f7fa;
-            border-radius: 10px;
-            padding: 24px;
-            border: 1px solid #e8ecf1;
-            transition: transform 0.3s cubic-bezier(.22,1,.36,1), box-shadow 0.3s, border-color 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        .project-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 32px rgba(30,80,128,0.12);
-            border-color: #1e5080;
-        }
-        .project-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: #1e5080;
-            transform: scaleX(0);
-            transition: transform 0.3s;
-            transform-origin: left;
-        }
-        .project-card:hover::after {
-            transform: scaleX(1);
-        }
+.nav-actions { display: flex; gap: 8px; align-items: center; }
+.icon-btn {
+  width: 38px; height: 38px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line-soft);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.icon-btn:hover { background: var(--accent); color: var(--ink-inv); border-color: var(--accent); }
+.icon-btn .kbd {
+  font-family: var(--mono); font-size: 10px; padding: 2px 5px;
+  border: 1px solid var(--line-soft); border-radius: 4px; color: var(--muted);
+}
+.cmd-btn {
+  width: auto; padding: 0 12px; gap: 8px;
+  font-family: var(--mono); font-size: 11px; color: var(--muted);
+  letter-spacing: .05em;
+}
+@media (max-width: 520px) { .cmd-btn span:not(.kbd) { display: none; } }
 
-        .project-tag {
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 3px 10px;
-            border-radius: 50px;
-            margin-bottom: 12px;
-        }
-        .tag-sql { background: #fde8e8; color: #c0392b; }
-        .tag-python { background: #e3edf7; color: #1e5080; }
-        .tag-powerbi { background: #fef3e0; color: #d4850a; }
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  padding: 64px 0 48px;
+  position: relative;
+  border-bottom: 1px solid var(--line-soft);
+}
+.hero-issue {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--muted); letter-spacing: .15em; text-transform: uppercase;
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line-soft);
+  margin-bottom: 32px;
+}
+.hero-issue .live {
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.hero-issue .live .pulse {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .3; transform: scale(1.4); }
+}
 
-        .project-name {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #0d2b4a;
-            margin-bottom: 6px;
-        }
-        .project-desc {
-            font-size: 0.85rem;
-            color: #666;
-            margin-bottom: 16px;
-            line-height: 1.55;
-        }
-        .project-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .project-links a {
-            display: inline-block;
-            padding: 5px 14px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-        .pill-report {
-            background: #1e5080;
-            color: #fff;
-        }
-        .pill-report:hover { background: #163d66; }
-        .pill-code {
-            background: #e4e9f0;
-            color: #1e5080;
-            border: 1px solid #d0dce8;
-        }
-        .pill-code:hover { background: #dce6f0; }
-        .pill-data {
-            background: #e4e9f0;
-            color: #666;
-            border: 1px solid #dde2e8;
-        }
-        .pill-data:hover { background: #e4e8ed; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 56px;
+  align-items: end;
+}
+@media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 32px; } }
 
-        /* ── Education ── */
-        .edu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 16px;
-        }
-        .edu-card {
-            background: #f5f7fa;
-            border-radius: 10px;
-            padding: 24px;
-            border: 1px solid #e8ecf1;
-            transition: box-shadow 0.3s;
-        }
-        .edu-card:hover {
-            box-shadow: 0 4px 16px rgba(30,80,128,0.08);
-        }
-        .edu-degree {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #0d2b4a;
-            margin-bottom: 4px;
-        }
-        .edu-school {
-            font-size: 0.88rem;
-            color: #777;
-        }
+.eyebrow {
+  font-family: var(--mono); font-size: 12px; color: var(--accent);
+  letter-spacing: .15em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 20px;
+}
+.eyebrow::before {
+  content: ''; width: 24px; height: 1px; background: var(--accent);
+}
 
-        /* ── Certs ── */
-        .certs-note {
-            font-size: 0.85rem;
-            color: #888;
-            margin-bottom: 20px;
-        }
-        .certs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 10px;
-        }
-        .cert-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.88rem;
-            color: #444;
-            padding: 10px 14px;
-            background: #f5f7fa;
-            border-radius: 8px;
-            border: 1px solid #eef1f5;
-            transition: border-color 0.2s;
-        }
-        .cert-item:hover { border-color: #b8cfe0; }
-        .cert-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #1e5080;
-            flex-shrink: 0;
-        }
+h1.name {
+  font-family: var(--display);
+  font-size: clamp(72px, 12vw, 184px);
+  line-height: .92;
+  letter-spacing: -.03em;
+  color: var(--ink);
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+h1.name .italic { font-style: italic; color: var(--accent); }
 
-        /* ── Footer ── */
-        .footer {
-            background: #0d2b4a;
-            color: #c0d8ef;
-            text-align: center;
-            padding: 48px 24px;
-        }
-        .footer-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-        .footer-contact {
-            font-size: 0.85rem;
-            color: #8bafc8;
-            margin-bottom: 24px;
-        }
-        .footer-contact a {
-            color: #a8cceb;
-            text-decoration: none;
-        }
-        .footer-contact a:hover { color: #fff; }
-        .footer-nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        .footer-nav a {
-            display: inline-block;
-            padding: 10px 28px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.25s;
-        }
-        .footer-nav .btn-primary {
-            background: #1e5080;
-            color: #fff;
-        }
-        .footer-nav .btn-primary:hover {
-            background: #2a6aa8;
-            transform: translateY(-2px);
-        }
-        .footer-nav .btn-outline {
-            border: 1.5px solid rgba(255,255,255,0.25);
-            color: #c0d8ef;
-        }
-        .footer-nav .btn-outline:hover {
-            border-color: rgba(255,255,255,0.5);
-            color: #fff;
-            transform: translateY(-2px);
-        }
+.headline {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.35;
+  color: var(--ink);
+  font-weight: 400;
+  max-width: 680px;
+  margin: 24px 0 28px;
+  letter-spacing: -.01em;
+}
+.headline em { font-style: italic; color: var(--accent); font-family: var(--display); }
 
-        /* ── Section backgrounds ── */
-        .bg-white { background: #f5f7fa; }
-        .bg-light { background: #eef2f7; }
+.hero-meta {
+  display: flex; gap: 32px; flex-wrap: wrap;
+  font-family: var(--mono); font-size: 12px; color: var(--muted);
+  letter-spacing: .06em; text-transform: uppercase;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line-soft);
+}
+.hero-meta span strong { color: var(--ink); font-weight: 600; }
+.hero-meta span { color: var(--ink-2); }
 
-        /* ── Mobile ── */
-        @media (max-width: 640px) {
-            .hero { padding: 56px 20px 48px; }
-            .hero h1 { font-size: 2rem; letter-spacing: 3px; }
-            .hero-title { font-size: 0.9rem; }
-            .hero-contact { flex-direction: column; align-items: center; gap: 4px; }
-            .hero-links { flex-direction: column; align-items: center; }
-            .hero-intro { font-size: 0.9rem; }
+/* Hero right: profile + bio facts */
+.hero-right {
+  display: flex; flex-direction: column; gap: 20px;
+}
+.profile-card {
+  background: var(--bg-2);
+  border: 1px solid var(--line-soft);
+  padding: 28px;
+  display: grid; grid-template-columns: 200px 1fr; gap: 28px;
+  align-items: center;
+}
+@media (max-width: 520px) { .profile-card { grid-template-columns: 140px 1fr; gap: 18px; padding: 20px; } }
+.profile-card img {
+  width: 200px; height: 200px; border-radius: 50%;
+  object-fit: cover;
+  filter: contrast(1.05);
+  border: 4px solid var(--accent);
+  box-shadow: 0 12px 32px -10px color-mix(in srgb, var(--ink) 45%, transparent);
+}
+@media (max-width: 520px) { .profile-card img { width: 140px; height: 140px; border-width: 3px; } }
+.profile-card .info .label {
+  font-family: var(--mono); font-size: 10px; color: var(--muted);
+  letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px;
+}
+.profile-card .info .who {
+  font-family: var(--serif); font-size: 20px; color: var(--ink);
+  font-weight: 500;
+}
+.profile-card .info .where { font-size: 14px; color: var(--muted); margin-top: 4px; }
 
-            .section { padding: 40px 16px; }
-            .section-title { font-size: 1.4rem; }
+/* Bio facts panel */
+.bio-facts {
+  background: var(--bg);
+  border: 1px solid var(--line-soft);
+}
+.bio-facts .fact {
+  display: grid; grid-template-columns: 110px 1fr;
+  gap: 16px; align-items: baseline;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.bio-facts .fact:last-child { border-bottom: 0; }
+.bio-facts .k {
+  font-family: var(--mono); font-size: 10px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .12em;
+}
+.bio-facts .v {
+  font-family: var(--serif); font-size: 15px; color: var(--ink);
+  line-height: 1.4;
+}
+.bio-facts .v em { color: var(--accent); font-style: italic; font-weight: 500; }
 
-            .timeline { padding-left: 24px; }
-            .timeline-item::before { left: -24px; width: 12px; height: 12px; }
+/* ============================================================
+   MARQUEE TICKER
+   ============================================================ */
+.ticker {
+  padding: 20px 0;
+  background: linear-gradient(180deg, var(--bg-3) 0%, var(--bg-4) 100%);
+  color: var(--on-dark);
+  overflow: hidden;
+  position: relative;
+  border-top: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+}
+.ticker::before, .ticker::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+}
+.ticker::before { left: 0; background: linear-gradient(90deg, var(--bg-3), transparent); }
+.ticker::after  { right: 0; background: linear-gradient(270deg, var(--bg-4), transparent); }
+.ticker-track {
+  display: flex; gap: 48px;
+  white-space: nowrap;
+  animation: scroll 45s linear infinite;
+  font-family: var(--mono); font-size: 13px; letter-spacing: .04em;
+  color: var(--on-dark);
+}
+.ticker-track span { display: inline-flex; align-items: center; gap: 48px; color: var(--on-dark); }
+.ticker-track .sep { color: var(--accent-2); }
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
 
-            .job-card { padding: 18px 20px; }
-            .job-card-header { flex-direction: column; }
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+section.block { padding: 96px 0; border-bottom: 1px solid var(--line-soft); }
+@media (max-width: 720px) { section.block { padding: 64px 0; } }
 
-            .projects-grid { grid-template-columns: 1fr; }
-            .edu-grid { grid-template-columns: 1fr; }
-            .certs-grid { grid-template-columns: 1fr; }
-        }
+.section-head {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: baseline;
+  gap: 32px;
+  margin-bottom: 56px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.section-head .no {
+  font-family: var(--mono); font-size: 12px; color: var(--muted);
+  letter-spacing: .15em;
+}
+.section-head h2 {
+  font-family: var(--display);
+  font-size: clamp(44px, 6vw, 84px);
+  color: var(--ink); font-weight: 400;
+  letter-spacing: -.02em; line-height: 1;
+}
+.section-head h2 em { font-style: italic; color: var(--accent); }
+.section-head .meta {
+  font-family: var(--mono); font-size: 11px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .1em;
+  text-align: right;
+}
 
-        /* ── Print ── */
-        @media print {
-            .hero { padding: 30px 20px; }
-            .reveal { opacity: 1 !important; transform: none !important; }
-            .job-details { max-height: none !important; opacity: 1 !important; }
-            .footer { display: none; }
-        }
-    </style>
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 64px;
+}
+@media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+.about-lead {
+  font-family: var(--serif);
+  font-size: 28px; line-height: 1.4;
+  color: var(--ink);
+  letter-spacing: -.01em;
+  font-weight: 400;
+}
+.about-lead .drop {
+  font-family: var(--display);
+  font-size: 88px; line-height: .8;
+  float: left;
+  color: var(--accent);
+  padding: 6px 10px 0 0;
+  font-style: italic;
+}
+.about-body {
+  font-size: 15.5px;
+  color: var(--ink-2);
+  column-count: 1;
+}
+.about-body p { margin-bottom: 16px; }
+.about-body p strong { color: var(--ink); font-weight: 600; }
+
+.skill-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 32px;
+}
+@media (max-width: 520px) { .skill-grid { grid-template-columns: repeat(2, 1fr); } }
+.skill {
+  border: 1px solid var(--line-soft);
+  padding: 14px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink);
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--bg-2);
+  transition: transform .2s, background-color .2s;
+}
+.skill:hover { transform: translateY(-2px); background: var(--bg-3); color: var(--on-dark); border-color: var(--bg-3); }
+.skill .lvl { color: var(--accent); font-weight: 600; }
+.skill:hover .lvl { color: var(--accent-2); }
+
+/* ============================================================
+   EXPERIENCE
+   ============================================================ */
+.xp {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 48px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line-soft);
+  transition: background-color .3s;
+  position: relative;
+}
+.xp:hover { background: color-mix(in srgb, var(--bg-2) 70%, transparent); padding-left: 16px; margin-left: -16px; padding-right: 16px; margin-right: -16px; border-radius: 4px; }
+.xp:last-child { border-bottom: 0; }
+@media (max-width: 720px) { .xp { grid-template-columns: 1fr; gap: 12px; } }
+
+.xp .date {
+  font-family: var(--mono); font-size: 11px; color: var(--muted);
+  letter-spacing: .1em; text-transform: uppercase;
+  padding-top: 6px;
+}
+.xp .date .now {
+  display: inline-block; padding: 2px 8px;
+  background: var(--accent); color: var(--ink-inv);
+  border-radius: 999px; font-size: 10px;
+  margin-top: 6px;
+}
+
+.xp-body .role {
+  font-family: var(--display); font-size: 36px;
+  color: var(--ink); font-weight: 400; letter-spacing: -.01em;
+  line-height: 1.05;
+  margin-bottom: 4px;
+}
+.xp-body .co {
+  font-family: var(--serif); font-size: 18px;
+  color: var(--accent); font-style: italic;
+  margin-bottom: 16px;
+}
+.xp-body .co .where {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--muted); font-style: normal;
+  margin-left: 12px; letter-spacing: .08em; text-transform: uppercase;
+}
+.xp-body ul { list-style: none; padding: 0; }
+.xp-body ul li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.xp-body ul li::before {
+  content: '';
+  position: absolute; left: 0; top: 11px;
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+/* ============================================================
+   PROJECTS
+   ============================================================ */
+.proj-filter {
+  display: flex; gap: 4px; margin-bottom: 32px;
+  padding: 4px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  width: fit-content;
+  font-family: var(--mono);
+  font-size: 12px; letter-spacing: .05em;
+}
+.proj-filter button {
+  padding: 8px 16px;
+  background: transparent; border: 0; cursor: pointer;
+  color: var(--ink-2); font: inherit;
+  border-radius: 999px;
+  text-transform: uppercase; letter-spacing: .08em;
+  transition: all .2s;
+}
+.proj-filter button:hover { color: var(--ink); }
+.proj-filter button.active {
+  background: var(--accent); color: var(--ink-inv);
+}
+.proj-filter button .cnt { font-size: 10px; opacity: .6; margin-left: 6px; }
+
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+@media (max-width: 860px) { .proj-grid { grid-template-columns: 1fr; } }
+
+.proj-card {
+  background: var(--bg-2);
+  border: 1px solid var(--line-soft);
+  padding: 28px;
+  position: relative;
+  transition: all .4s cubic-bezier(.2,.7,.3,1);
+  cursor: pointer;
+  overflow: hidden;
+}
+.proj-card:hover {
+  border-color: var(--ink);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px color-mix(in srgb, var(--ink) 30%, transparent);
+}
+.proj-card::after {
+  content: '+';
+  position: absolute; top: 18px; right: 22px;
+  font-size: 26px; color: var(--muted);
+  transition: transform .3s, color .3s;
+  font-family: var(--mono); font-weight: 300;
+  line-height: 1;
+}
+.proj-card:hover::after { color: var(--accent); transform: rotate(45deg); }
+
+.proj-card.hidden { display: none; }
+
+.proj-cat {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: .15em; text-transform: uppercase;
+  padding: 4px 10px;
+  display: inline-block;
+  margin-bottom: 18px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+}
+.proj-cat[data-cat="SQL"] { color: var(--sql); }
+.proj-cat[data-cat="Python"] { color: var(--py); }
+.proj-cat[data-cat="Power BI"] { color: var(--bi); }
+
+.proj-title {
+  font-family: var(--display);
+  font-size: 34px; line-height: 1.05;
+  color: var(--ink); font-weight: 400;
+  letter-spacing: -.015em;
+  margin-bottom: 10px;
+  padding-right: 32px;
+}
+.proj-stack {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--muted); letter-spacing: .04em;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--line-soft);
+}
+.proj-q {
+  font-family: var(--serif); font-size: 15px;
+  color: var(--ink); font-style: italic;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.proj-q::before { content: 'Q. '; color: var(--accent); font-style: normal; font-family: var(--mono); font-size: 12px; }
+.proj-a {
+  font-size: 14px; line-height: 1.55;
+  color: var(--ink-2);
+  margin-bottom: 24px;
+}
+.proj-a::before { content: 'A. '; color: var(--accent); font-family: var(--mono); font-size: 12px; }
+
+.proj-links {
+  display: flex; gap: 6px; flex-wrap: wrap;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: .06em; text-transform: uppercase;
+}
+.proj-links a {
+  padding: 7px 12px;
+  border: 1px solid var(--line-soft);
+  color: var(--ink);
+  text-decoration: none;
+  transition: all .2s;
+}
+.proj-links a:hover { background: var(--bg-3); color: var(--on-dark); border-color: var(--bg-3); }
+.proj-links a.primary { background: var(--accent); color: var(--ink-inv); border-color: var(--accent); }
+.proj-links a.primary:hover { background: var(--bg-3); border-color: var(--bg-3); }
+
+/* ============================================================
+   BACKGROUND (education + certs)
+   ============================================================ */
+.bg-grid {
+  display: grid; grid-template-columns: 1.5fr 1fr; gap: 64px;
+}
+@media (max-width: 860px) { .bg-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+.edu-list .item {
+  display: grid; grid-template-columns: 140px 1fr;
+  gap: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.edu-list .item:last-child { border-bottom: 0; }
+.edu-list .yr {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--muted); letter-spacing: .1em;
+  padding-top: 6px;
+}
+.edu-list .d .deg {
+  font-family: var(--display); font-size: 24px;
+  color: var(--ink); font-weight: 400; line-height: 1.1;
+  margin-bottom: 4px;
+}
+.edu-list .d .inst {
+  font-family: var(--serif); font-style: italic;
+  color: var(--accent); font-size: 15px;
+}
+.edu-list .d .note {
+  font-family: var(--sans); font-size: 13px;
+  color: var(--muted); margin-top: 6px;
+}
+
+.certs { display: flex; flex-direction: column; gap: 12px; }
+.cert {
+  background: var(--bg-2);
+  border: 1px solid var(--line-soft);
+  padding: 18px;
+  position: relative;
+  transition: transform .2s, border-color .2s;
+}
+.cert:hover { transform: translateX(4px); border-color: var(--accent); }
+.cert .cn {
+  font-family: var(--serif); font-size: 17px;
+  color: var(--ink);
+  line-height: 1.3; margin-bottom: 6px;
+}
+.cert .cm {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--muted); letter-spacing: .1em; text-transform: uppercase;
+}
+
+/* ============================================================
+   CONTACT / FOOTER
+   ============================================================ */
+.contact {
+  padding: 112px 0 96px;
+  background: linear-gradient(180deg, var(--bg-3) 0%, var(--bg-4) 60%, var(--bg-3) 100%);
+  color: var(--on-dark);
+  position: relative;
+  overflow: hidden;
+}
+.contact::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 80% 30%, color-mix(in srgb, var(--accent) 35%, transparent), transparent 55%),
+    radial-gradient(circle at 15% 85%, color-mix(in srgb, var(--accent-2) 22%, transparent), transparent 50%);
+  pointer-events: none;
+}
+.contact::after {
+  content: '';
+  position: absolute; left: 0; right: 0; top: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--on-dark) 25%, transparent), transparent);
+}
+.contact .wrap { position: relative; z-index: 2; }
+
+.contact h2 {
+  font-family: var(--display);
+  font-size: clamp(60px, 10vw, 160px);
+  font-weight: 400;
+  line-height: .95;
+  letter-spacing: -.03em;
+  margin-bottom: 32px;
+}
+.contact h2 em { font-style: italic; color: var(--accent-2); }
+.contact h2 { color: var(--on-dark); }
+
+.contact-grid {
+  display: grid; grid-template-columns: 1.4fr 1fr;
+  gap: 48px; align-items: end;
+  margin-top: 64px;
+  padding-top: 40px;
+  border-top: 1px solid color-mix(in srgb, var(--on-dark) 20%, transparent);
+}
+@media (max-width: 720px) { .contact-grid { grid-template-columns: 1fr; } }
+
+.contact-info .lbl {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--on-dark) 65%, transparent);
+  margin-bottom: 8px;
+}
+.contact-info .big {
+  font-family: var(--serif); font-size: 28px;
+  color: var(--on-dark); text-decoration: none;
+  display: inline-block;
+  border-bottom: 1px solid color-mix(in srgb, var(--on-dark) 30%, transparent);
+  transition: border-color .2s, color .2s;
+  margin-bottom: 24px;
+}
+.contact-info .big:hover { border-color: var(--accent-2); color: var(--accent-2); }
+.contact-info .row {
+  display: flex; gap: 32px; flex-wrap: wrap;
+  font-family: var(--mono); font-size: 12px;
+  color: color-mix(in srgb, var(--on-dark) 85%, transparent);
+  margin-top: 16px;
+}
+
+.cta-links { display: flex; flex-direction: column; gap: 10px; }
+.cta-btn {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 22px;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--on-dark) 30%, transparent);
+  color: var(--on-dark); text-decoration: none;
+  font-family: var(--mono); font-size: 13px;
+  letter-spacing: .08em; text-transform: uppercase;
+  transition: all .25s;
+}
+.cta-btn:hover {
+  background: var(--accent); border-color: var(--accent);
+  color: var(--on-dark);
+  transform: translateX(6px);
+}
+.cta-btn .arrow {
+  font-family: var(--mono); font-size: 18px;
+  transition: transform .25s;
+}
+.cta-btn:hover .arrow { transform: translateX(4px); }
+
+footer {
+  padding: 28px 0;
+  background: var(--bg-3);
+  color: color-mix(in srgb, var(--on-dark) 80%, transparent);
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: .1em; text-transform: uppercase;
+  border-top: 1px solid var(--line-dark);
+}
+footer .kbd-hint {
+  font-family: var(--mono); padding: 2px 5px;
+  border: 1px solid color-mix(in srgb, var(--on-dark) 35%, transparent);
+  border-radius: 3px;
+  color: var(--on-dark);
+}
+footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; position: relative; z-index: 2; }
+
+/* ============================================================
+   COMMAND PALETTE
+   ============================================================ */
+.cmd-overlay {
+  position: fixed; inset: 0;
+  background: color-mix(in srgb, var(--ink) 60%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100;
+  display: none;
+  align-items: flex-start; justify-content: center;
+  padding-top: 14vh;
+  animation: fade .2s;
+}
+.cmd-overlay.open { display: flex; }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+.cmd-panel {
+  width: min(620px, 90vw);
+  background: var(--bg);
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 40px 80px -20px rgba(0,0,0,.4);
+  animation: pop .25s cubic-bezier(.2,.9,.3,1.1);
+}
+@keyframes pop { from { transform: scale(.95) translateY(-10px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.cmd-input {
+  width: 100%; padding: 20px 24px;
+  background: transparent; border: 0;
+  font-family: var(--serif); font-size: 20px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line-soft);
+  outline: none;
+}
+.cmd-input::placeholder { color: var(--muted); }
+
+.cmd-results { max-height: 50vh; overflow-y: auto; padding: 8px; }
+.cmd-group-label {
+  padding: 12px 16px 4px;
+  font-family: var(--mono); font-size: 10px;
+  color: var(--muted); letter-spacing: .15em; text-transform: uppercase;
+}
+.cmd-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 10px 16px; border-radius: 8px;
+  cursor: pointer; color: var(--ink-2);
+  font-size: 14px;
+  transition: background-color .1s;
+}
+.cmd-item .ci-icon {
+  width: 28px; height: 28px; display: grid; place-items: center;
+  background: var(--bg-2);
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  font-family: var(--mono); font-size: 11px;
+  color: var(--accent);
+}
+.cmd-item .ci-title { flex: 1; color: var(--ink); }
+.cmd-item .ci-sub { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+.cmd-item.active, .cmd-item:hover { background: var(--bg-2); }
+.cmd-item.active .ci-icon { background: var(--accent); color: var(--ink-inv); border-color: var(--accent); }
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.2,.7,.3,1), transform .8s cubic-bezier(.2,.7,.3,1); }
+.reveal.in { opacity: 1; transform: none; }
+.reveal.d1 { transition-delay: .08s; }
+.reveal.d2 { transition-delay: .16s; }
+.reveal.d3 { transition-delay: .24s; }
+.reveal.d4 { transition-delay: .32s; }
+</style>
 </head>
 <body>
 
-    <!-- ── Hero ── -->
-    <header class="hero">
-        <div class="hero-inner">
-            <div class="hero-photo">
-                <img src="profile.jpeg" alt="Tommy Nguyen" />
-            </div>
-            <h1>TOMMY NGUYEN</h1>
-            <div class="hero-contact">
-                <span>0456 183 979</span>
-                <a href="mailto:tommyng.183@gmail.com">tommyng.183@gmail.com</a>
-                <span>Bankstown NSW 2200</span>
-            </div>
-            <div class="hero-links">
-                <a href="https://linkedin.com/in/tommy-nguyen-a145b414b" target="_blank" rel="noopener">LinkedIn</a>
-                <a href="https://github.com/Tommy-Nguyen-Stonera" target="_blank" rel="noopener">GitHub</a>
-            </div>
-            <p class="hero-intro">
-                Results-driven analyst with five years of experience across building materials, property, and retail. Proficient in SQL, Python, and Power BI, with actual projects data record of building analytics functions from the ground up using real project data. Experienced in developing pipeline dashboards, managing CRM data, delivering KPI reporting, and automating workflows. Combines hands-on industry knowledge in construction supply with strong data knowledge to generate insights that reflect real operational conditions, including procurement cycles, pricing trends, and seasonal performance.
-            </p>
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">
+      <span>Tommy Nguyen</span>
+      <span class="dot">.</span>
+      <span class="tag">est. 2020</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about"><span class="num">01</span>About</a>
+      <a href="#experience"><span class="num">02</span>Experience</a>
+      <a href="#projects"><span class="num">03</span>Projects</a>
+      <a href="#background"><span class="num">04</span>Background</a>
+      <a href="#contact"><span class="num">05</span>Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn cmd-btn" id="openCmd" title="Command palette">
+        <span>Search</span>
+        <span class="kbd">⌘K</span>
+      </button>
+      <button class="icon-btn" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">
+        <svg id="sunIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-issue">
+      <span>Issue N° 04, Vol. 2026, Sydney AU</span>
+      <span class="live"><span class="pulse"></span>Open to new roles</span>
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow reveal">Portfolio, Business and Data Analyst</div>
+        <h1 class="name reveal">Tommy<br><span class="italic">Nguyen</span>.</h1>
+        <p class="headline reveal d1">
+          Five years of supplier pipeline, B2B account, and CRM work across <em>building materials</em>, property, and wholesale flooring. I sit at the seam between commercial teams and the data they rely on.
+        </p>
+        <div class="hero-meta reveal d2">
+          <span><strong>05y</strong> Experience</span>
+          <span><strong>09</strong> Case Studies</span>
+          <span><strong>SQL, Python, Power BI</strong></span>
+          <span>Based in <strong>Sydney</strong></span>
         </div>
-    </header>
+      </div>
 
-    <!-- ── Employment History ── -->
-    <section class="bg-white">
-        <div class="section reveal">
-            <div class="section-label">Experience</div>
-            <h2 class="section-title">Employment History</h2>
-            <div class="section-divider"></div>
-
-            <div class="timeline">
-
-                <!-- Showtile -->
-                <div class="timeline-item reveal">
-                    <div class="job-card" >
-                        <div class="job-card-header">
-                            <div>
-                                <div class="job-company">Showtile</div>
-                                <div class="job-role">Sales Operations Analyst</div>
-                                <div class="job-industry">Tiles, Stone & Pavers - Sydney, NSW</div>
-                            </div>
-                            <div class="job-dates">Dec 2023 - Present</div>
-                        </div>
-                        <div class="job-details">
-                            <div class="job-details-inner">
-                                <div class="job-highlight">Manage sales data and invoice reconciliation across MYOB and Xero for 200+ accounts.</div>
-                                <div class="job-highlight">Track 15+ international procurement pipelines - handle supplier quotes, delivery schedules, and cut mismatches by 30%.</div>
-                                <div class="job-highlight">Redesigned and automated CRM data entry processes. Cut duplicate records and made pipeline reports reliable.</div>
-                                <div class="job-highlight">Run showroom marketing through Canva, Google Ads, and Google Analytics - grew foot traffic by 20%.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- HTT Flooring -->
-                <div class="timeline-item reveal">
-                    <div class="job-card" >
-                        <div class="job-card-header">
-                            <div>
-                                <div class="job-company">HTT Flooring</div>
-                                <div class="job-role">Account Manager</div>
-                                <div class="job-industry">B2B Flooring Wholesale - Sydney, NSW</div>
-                            </div>
-                            <div class="job-dates">Jul 2022 - Dec 2023</div>
-                        </div>
-                        <div class="job-details">
-                            <div class="job-details-inner">
-                                <div class="job-highlight">Sourced leads and built KPI frameworks across BCI Central, EstimateOne, and Monday.com for a $1M+ B2B portfolio.</div>
-                                <div class="job-highlight">Administered and automated CRM data across 3 platforms for 300+ B2B accounts with 98% data accuracy.</div>
-                                <div class="job-highlight">Conducted territory analysis across 4 markets. Found 35% of revenue came from one region, shifted focus and grew the overall portfolio by 15%.</div>
-                                <div class="job-highlight">Built reporting workflows across sales, warehouse, and logistics - eliminated 3 manual handoffs, cut response time by 40%.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Royal Crystal Group -->
-                <div class="timeline-item reveal">
-                    <div class="job-card" >
-                        <div class="job-card-header">
-                            <div>
-                                <div class="job-company">Royal Crystal Group</div>
-                                <div class="job-role">Sales Rep & Business Development</div>
-                                <div class="job-industry">International B2B - Remote from Australia</div>
-                            </div>
-                            <div class="job-dates">May 2020 - Jul 2022</div>
-                        </div>
-                        <div class="job-details">
-                            <div class="job-details-inner">
-                                <div class="job-highlight">Produced competitor intelligence across 20+ flooring brands. Findings fed a pricing review that lifted margins by 12%.</div>
-                                <div class="job-highlight">Managed cross-border operations across 2 time zones - maintained 95% on-time delivery rate.</div>
-                                <div class="job-highlight">Led Sydney Build trade event activation - managed $15K budget, generated 50+ leads, secured 2x budget next year.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Spire Property Group -->
-                <div class="timeline-item reveal">
-                    <div class="job-card" >
-                        <div class="job-card-header">
-                            <div>
-                                <div class="job-company">Spire Property Group</div>
-                                <div class="job-role">Key Account Manager</div>
-                                <div class="job-industry">Property - Sydney, NSW (Concurrent)</div>
-                            </div>
-                            <div class="job-dates">Dec 2020 - Mar 2023</div>
-                        </div>
-                        <div class="job-details">
-                            <div class="job-details-inner">
-                                <div class="job-highlight">Generated weekly pipeline dashboards for 8 key accounts ($2M+) - preserved $350K revenue through early risk detection.</div>
-                                <div class="job-highlight">Delivered quarterly performance presentations to the C-suite. Analysis influenced $500K+ in quarterly resource allocation decisions made by leadership.</div>
-                                <div class="job-highlight">Kept CRM records at 99% accuracy across 100+ accounts.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+      <aside class="hero-right">
+        <div class="profile-card reveal d1">
+          <img src="assets/profile.jpeg" alt="Tommy Nguyen">
+          <div class="info">
+            <div class="label">Currently</div>
+            <div class="who">Sales Operations Analyst</div>
+            <div class="where">Showtile, Sydney</div>
+          </div>
         </div>
-    </section>
 
-    <!-- ── Projects ── -->
-    <section class="bg-light">
-        <div class="section">
-            <div class="section-label reveal">Portfolio</div>
-            <h2 class="section-title reveal">Projects</h2>
-            <div class="section-divider reveal"></div>
-
-            <div style="margin-bottom:12px;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1e5080;">SQL</div>
-            <div class="projects-grid" style="margin-bottom:40px;">
-
-                <div class="project-card reveal">
-                    <span class="project-tag tag-sql">SQL</span>
-                    <div class="project-name">Retail Business Analysis</div>
-                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">T-SQL · CTEs · Window Functions · Dynamic PIVOT</div>
-                    <div class="project-desc"><strong>Question:</strong> At which discount tier does each product category shift from profit to loss?<br><br><strong>Key results:</strong> Discounts above 50% produce losses across all categories. Technology is the top profit driver for Consumer and Corporate segments even though it is not always the top revenue category.</div>
-                    <div class="project-links">
-                        <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-retail-business-analysis/main/SQL%20Retail%20Business%20Analysis%20Report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/sql-retail-business-analysis" target="_blank" rel="noopener" class="pill-code">Source Code</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/sql-retail-business-analysis/raw/main/data/ORDERS.csv" target="_blank" rel="noopener" class="pill-data">Dataset</a>
-                    </div>
-                </div>
-
-                <div class="project-card reveal">
-                    <span class="project-tag tag-sql">SQL</span>
-                    <div class="project-name">AU Building Approvals</div>
-                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">T-SQL · LAG() · Conditional Aggregation · Seasonal PIVOT</div>
-                    <div class="project-desc"><strong>Question:</strong> Which states are gaining construction market share, and which are declining?<br><br><strong>Key results:</strong> Victoria leads with 31% of national approvals vs NSW at 28%. NSW has fallen 41% from its 2016 peak. Only Tasmania and South Australia grew between 2015-2019 and 2020-2024.</div>
-                    <div class="project-links">
-                        <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-au-building-approvals/main/report/au_building_approvals_report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/sql-au-building-approvals" target="_blank" rel="noopener" class="pill-code">Source Code</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/sql-au-building-approvals/raw/main/data/building_approvals_full.csv" target="_blank" rel="noopener" class="pill-data">Dataset</a>
-                    </div>
-                </div>
-
-                <div class="project-card reveal">
-                    <span class="project-tag tag-sql">SQL</span>
-                    <div class="project-name">AU Building Activity</div>
-                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">T-SQL · Starts-to-Completions Ratio · PIVOT · Rolling Averages</div>
-                    <div class="project-desc"><strong>Question:</strong> Is Australia's construction pipeline building backlog or clearing it?<br><br><strong>Key results:</strong> Starts-to-completions ratio spiked to 1.34 in 2021 (COVID pipeline jam). National pipeline peaked at 244,100 dwellings in Q3 2022. Victoria overtook NSW as the largest construction market.</div>
-                    <div class="project-links">
-                        <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-au-building-activity/main/report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/sql-au-building-activity" target="_blank" rel="noopener" class="pill-code">Source Code</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/sql-au-building-activity/raw/main/data/building_activity.csv" target="_blank" rel="noopener" class="pill-data">Dataset</a>
-                    </div>
-                </div>
-
-                <div class="project-card reveal">
-                    <span class="project-tag tag-sql">SQL</span>
-                    <div class="project-name">US Construction Spending</div>
-                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">T-SQL · LAG() · Peak-to-Trough Analysis · PIVOT · Rolling Averages</div>
-                    <div class="project-desc"><strong>Question:</strong> How did the GFC and COVID compare in terms of construction spending impact and recovery speed?<br><br><strong>Key results:</strong> GFC: total spending fell 37%, residential fell 64%, took a decade to recover. COVID: only a 2.8% dip followed by the fastest growth in the dataset at +14.9% in 2022.</div>
-                    <div class="project-links">
-                        <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-us-construction-spending/main/report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/sql-us-construction-spending" target="_blank" rel="noopener" class="pill-code">Source Code</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/sql-us-construction-spending/raw/main/data/total_construction.csv" target="_blank" rel="noopener" class="pill-data">Dataset</a>
-                    </div>
-                </div>
-
-            </div>
-
-            <div style="margin-bottom:12px;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1e5080;">Python</div>
-            <div class="projects-grid" style="margin-bottom:40px;">
-
-                <div class="project-card reveal">
-                    <span class="project-tag tag-python">Python</span>
-                    <div class="project-name">Customer Sentiment Analysis</div>
-                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">Python · VADER · TextBlob · NLP · pandas · matplotlib</div>
-                    <div class="project-desc"><strong>Question:</strong> Does what customers write in a review match the star rating they give?<br><br><strong>Key results:</strong> VADER sentiment correlates 0.681 with star ratings. Quality and durability is the #1 complaint (41% of negative reviews). 3.9% of reviews show text-star mismatches. iFit has a 43% negative review rate.</div>
-                    <div class="project-links">
-                        <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis/main/report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis" target="_blank" rel="noopener" class="pill-code">Source Code</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis/raw/main/data/home_depot_reviews.csv" target="_blank" rel="noopener" class="pill-data">Dataset</a>
-                    </div>
-                </div>
-
-                <div class="project-card reveal">
-                    <span class="project-tag tag-python">Python</span>
-                    <div class="project-name">Housing Feature Impact</div>
-                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">Python · pandas · matplotlib · Statistical Comparison</div>
-                    <div class="project-desc"><strong>Question:</strong> Which building materials and finishes have the biggest dollar impact on sale price?<br><br><strong>Key results:</strong> Stone masonry veneer adds $102K vs no veneer. Kitchen upgrade from Average to Excellent adds $80K+. Poured concrete foundation is $43K above cinder block.</div>
-                    <div class="project-links">
-                        <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-housing-features-analysis/main/report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/python-housing-features-analysis" target="_blank" rel="noopener" class="pill-code">Source Code</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/python-housing-features-analysis/raw/main/ames_housing.tsv" target="_blank" rel="noopener" class="pill-data">Dataset</a>
-                    </div>
-                </div>
-
-                <div class="project-card reveal">
-                    <span class="project-tag tag-python">Python</span>
-                    <div class="project-name">Home Furnishings Market</div>
-                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">Python · pandas · seaborn · matplotlib · Market Analysis</div>
-                    <div class="project-desc"><strong>Question:</strong> How concentrated is the Amazon home improvement marketplace, and does Prime status drive better outcomes?<br><br><strong>Key results:</strong> Top 10 sellers hold 15.8% of listings. Prime products rate 4.06 vs 4.18 for non-Prime. Discounts above 50% generate 35% more reviews.</div>
-                    <div class="project-links">
-                        <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-home-furnishings-market/main/report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/python-home-furnishings-market" target="_blank" rel="noopener" class="pill-code">Source Code</a>
-                    </div>
-                </div>
-
-                <div class="project-card reveal">
-                    <span class="project-tag tag-python">Python</span>
-                    <div class="project-name">US Construction Spending</div>
-                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">Python · pandas · matplotlib · seaborn · Time Series</div>
-                    <div class="project-desc"><strong>Question:</strong> Which sectors drove construction growth, and how did private vs public spending behave through economic cycles?<br><br><strong>Key results:</strong> Manufacturing and healthcare were the standout growth sectors. Private spending is far more volatile than public through downturns. Residential led the GFC collapse and the post-COVID bounce.</div>
-                    <div class="project-links">
-                        <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis/main/report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis" target="_blank" rel="noopener" class="pill-code">Source Code</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis/raw/main/construction_spending.csv" target="_blank" rel="noopener" class="pill-data">Dataset</a>
-                    </div>
-                </div>
-
-            </div>
-
-            <div style="margin-bottom:12px;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1e5080;">Power BI</div>
-            <div class="projects-grid">
-
-                <div class="project-card reveal">
-                    <span class="project-tag tag-powerbi">Power BI</span>
-                    <div class="project-name">Pizza Retail Dashboard</div>
-                    <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">Power BI · DAX · Excel · Interactive Dashboard</div>
-                    <div class="project-desc"><strong>Question:</strong> When do customers order, what do they order, and which products drive the most revenue?<br><br><strong>Key results:</strong> Friday is the highest revenue day. Classic category leads in both order count and revenue. Peak hours are 12-1pm and 5-7pm. Thanksgiving (27 Nov) was the single highest revenue day of the year.</div>
-                    <div class="project-links">
-                        <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis/main/Pizza%20Business%20Analysis%20Report.html" target="_blank" rel="noopener" class="pill-report">View Report</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis" target="_blank" rel="noopener" class="pill-code">Source Code</a>
-                        <a href="https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis/raw/main/data_pizza.xlsx" target="_blank" rel="noopener" class="pill-data">Dataset</a>
-                    </div>
-                </div>
-
-            </div>
+        <div class="bio-facts reveal d2">
+          <div class="fact">
+            <div class="k">Focus</div>
+            <div class="v">Business analysis, SQL, Python, Power BI, CRM ops</div>
+          </div>
+          <div class="fact">
+            <div class="k">Industries</div>
+            <div class="v">Building materials, property, wholesale flooring</div>
+          </div>
+          <div class="fact">
+            <div class="k">Education</div>
+            <div class="v">Master of Marketing, Western Sydney University</div>
+          </div>
+          <div class="fact">
+            <div class="k">Languages</div>
+            <div class="v">English and Vietnamese</div>
+          </div>
+          <div class="fact">
+            <div class="k">Status</div>
+            <div class="v"><em>Open to new opportunities</em></div>
+          </div>
         </div>
-    </section>
+      </aside>
+    </div>
+  </div>
+</header>
 
-    <!-- ── Education ── -->
-    <section class="bg-white">
-        <div class="section">
-            <div class="section-label reveal">Background</div>
-            <h2 class="section-title reveal">Education</h2>
-            <div class="section-divider reveal"></div>
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>
+      SQL <span class="sep">//</span> PYTHON <span class="sep">//</span> POWER BI <span class="sep">//</span> DAX <span class="sep">//</span> MYOB <span class="sep">//</span> XERO <span class="sep">//</span> MONDAY.COM <span class="sep">//</span> BCI CENTRAL <span class="sep">//</span> ESTIMATEONE <span class="sep">//</span> GOOGLE ANALYTICS <span class="sep">//</span> CRM GOVERNANCE <span class="sep">//</span> PROCESS MAPPING <span class="sep">//</span> REQUIREMENTS GATHERING <span class="sep">//</span> WORKFLOW REDESIGN <span class="sep">//</span> PIPELINE DASHBOARDS <span class="sep">//</span>
+    </span>
+    <span aria-hidden="true">
+      SQL <span class="sep">//</span> PYTHON <span class="sep">//</span> POWER BI <span class="sep">//</span> DAX <span class="sep">//</span> MYOB <span class="sep">//</span> XERO <span class="sep">//</span> MONDAY.COM <span class="sep">//</span> BCI CENTRAL <span class="sep">//</span> ESTIMATEONE <span class="sep">//</span> GOOGLE ANALYTICS <span class="sep">//</span> CRM GOVERNANCE <span class="sep">//</span> PROCESS MAPPING <span class="sep">//</span> REQUIREMENTS GATHERING <span class="sep">//</span> WORKFLOW REDESIGN <span class="sep">//</span> PIPELINE DASHBOARDS <span class="sep">//</span>
+    </span>
+  </div>
+</div>
 
-            <div class="edu-grid">
-                <div class="edu-card reveal">
-                    <div class="edu-degree">Master of Marketing</div>
-                    <div class="edu-school">Western Sydney University</div>
-                    <div style="font-size:0.8rem;color:#aaa;margin-top:4px;">Jan 2022 - Jan 2024</div>
-                </div>
-                <div class="edu-card reveal">
-                    <div class="edu-degree">Bachelor of Commerce, International Business</div>
-                    <div class="edu-school">Macquarie University</div>
-                    <div style="font-size:0.8rem;color:#aaa;margin-top:4px;">Feb 2016 - Nov 2019</div>
-                </div>
-                <div class="edu-card reveal">
-                    <div class="edu-degree">Diploma of Commerce</div>
-                    <div class="edu-school">SIBT Navitas, Sydney</div>
-                    <div style="font-size:0.8rem;color:#aaa;margin-top:4px;">Feb 2014 - Dec 2015</div>
-                </div>
+<!-- ABOUT -->
+<section class="block" id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="no">§ 01</span>
+      <h2>The <em>analyst</em></h2>
+      <span class="meta">A short bio</span>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-lead reveal">
+        <span class="drop">F</span>ive years of supplier pipeline, B2B account, and CRM work across <em>building materials</em>, property, and wholesale flooring. The kind of role that lives between the sales floor and the spreadsheet.
+      </div>
+
+      <div class="about-body reveal d1">
+        <p>I work in <strong>SQL, Python, and Power BI</strong> on the technical side, and in <strong>requirements gathering, process mapping, and stakeholder translation</strong> on the business side. The same person ships the dashboard and writes the brief that explains what it means.</p>
+        <p>My edge is industry context. Years on the commercial side of <strong>construction supply</strong> mean I read procurement cycles, pricing trends, and seasonal performance the way an operator would, not just the way the data labels them.</p>
+        <p>This portfolio is built for two job archetypes: <strong>Business Analyst</strong> roles that need someone who can elicit requirements and redesign workflows, and <strong>Data Analyst</strong> roles that need SQL, Python, and Power BI applied to a real business problem.</p>
+        <div class="skill-grid">
+          <div class="skill"><span>SQL, T-SQL</span><span class="lvl">●●●●●</span></div>
+          <div class="skill"><span>Python, NLP</span><span class="lvl">●●●●○</span></div>
+          <div class="skill"><span>Power BI, DAX</span><span class="lvl">●●●●○</span></div>
+          <div class="skill"><span>CRM Ops</span><span class="lvl">●●●●●</span></div>
+          <div class="skill"><span>Process Mapping</span><span class="lvl">●●●●○</span></div>
+          <div class="skill"><span>Google Analytics</span><span class="lvl">●●●●○</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="block" id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="no">§ 02</span>
+      <h2>Employment <em>history</em></h2>
+      <span class="meta">2020 to present, 4 roles</span>
+    </div>
+
+    <div class="xp-list">
+      <article class="xp reveal">
+        <div class="date">
+          Dec 2023 to present
+          <div class="now">Current</div>
+        </div>
+        <div class="xp-body">
+          <div class="role">Sales Operations Analyst</div>
+          <div class="co">Showtile <span class="where">Tiles, Stone and Pavers, Sydney NSW</span></div>
+          <ul>
+            <li>Established Customer Relationship Management (CRM) data governance standards across supplier records, eliminating duplicate entries and making procurement pipeline reports reliable for sales and operations.</li>
+            <li>Tracked 15+ international procurement pipelines across supplier quotes, lead times, and delivery schedules, cutting order mismatches by 30% through tighter supply-chain data.</li>
+            <li>Automated sales data and invoice reconciliation across MYOB and Xero for 200+ accounts, replacing manual double-entry with repeatable workflows.</li>
+            <li>Prepared weekly performance dashboards on sales trends and stock levels for management review.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="xp reveal">
+        <div class="date">Jul 2022 to Dec 2023</div>
+        <div class="xp-body">
+          <div class="role">Account Manager</div>
+          <div class="co">HTT Flooring <span class="where">B2B Flooring Wholesale, Sydney NSW</span></div>
+          <ul>
+            <li>Conducted territory analysis across 4 markets, surfaced a 35% revenue concentration in one region, and grew the portfolio 15% after re-allocating sales effort.</li>
+            <li>Maintained 98% CRM data accuracy across 300+ B2B accounts through weekly hygiene checks and supplier qualification reviews.</li>
+            <li>Built repeatable reporting workflows across sales, warehouse, and logistics, eliminating 3 manual handoffs and cutting response time by 40%.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="xp reveal">
+        <div class="date">Dec 2020 to Mar 2023 <div class="now" style="background:var(--moss)">Concurrent</div></div>
+        <div class="xp-body">
+          <div class="role">Key Account Manager</div>
+          <div class="co">Spire Property Group <span class="where">Property, Sydney NSW</span></div>
+          <ul>
+            <li>Built weekly pipeline dashboards for 8 key accounts worth $2M+, caught three at-risk accounts early and kept $350K from walking out the door.</li>
+            <li>Delivered quarterly performance presentations to the C-suite. The analysis influenced $500K+ in quarterly resource allocation decisions.</li>
+            <li>Kept CRM records at 99% accuracy across 100+ accounts so forecasts and renewal calls ran off the same source of truth.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="xp reveal">
+        <div class="date">May 2020 to Jul 2022</div>
+        <div class="xp-body">
+          <div class="role">Sales Rep and Business Development</div>
+          <div class="co">Royal Crystal Group <span class="where">International B2B, remote from Vietnam</span></div>
+          <ul>
+            <li>Ran competitor analysis across 20+ flooring brands, triggering a pricing review that lifted margins by 12%.</li>
+            <li>Managed cross-border operations across 2 time zones with a 95% on-time delivery rate.</li>
+            <li>Generated 50+ qualified leads through structured outreach and 3-stage follow-up discipline at the Sydney Build trade event on a $15K budget.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="block" id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="no">§ 03</span>
+      <h2>Selected <em>case studies</em></h2>
+      <span class="meta">09 Projects, updated 2026</span>
+    </div>
+
+    <div class="proj-filter reveal" id="projFilter">
+      <button class="active" data-filter="all">All <span class="cnt">09</span></button>
+      <button data-filter="SQL">SQL <span class="cnt">04</span></button>
+      <button data-filter="Python">Python <span class="cnt">04</span></button>
+      <button data-filter="Power BI">Power BI <span class="cnt">01</span></button>
+    </div>
+
+    <div class="proj-grid" id="projGrid">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- BACKGROUND -->
+<section class="block" id="background">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="no">§ 04</span>
+      <h2>Background and <em>credentials</em></h2>
+      <span class="meta">Education, Certifications</span>
+    </div>
+
+    <div class="bg-grid">
+      <div class="reveal">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;">Education</div>
+        <div class="edu-list">
+          <div class="item">
+            <div class="yr">Graduated<br>Aug 2023</div>
+            <div class="d">
+              <div class="deg">Master of Marketing</div>
+              <div class="inst">Western Sydney University, Parramatta</div>
+              <div class="note">Distinctions in Business Analytics in Practice, Business Project, and Marketing Systems.</div>
             </div>
-        </div>
-    </section>
-
-    <!-- ── Certifications ── -->
-    <section class="bg-light">
-        <div class="section">
-            <div class="section-label reveal">Credentials</div>
-            <h2 class="section-title reveal">Certifications</h2>
-            <div class="section-divider reveal"></div>
-            <div class="certs-grid">
-                <div class="cert-item reveal"><span class="cert-dot"></span>Google Analytics Individual Qualification</div>
-                <div class="cert-item reveal"><span class="cert-dot"></span>Data Visualization: Storytelling (LinkedIn Learning)</div>
+          </div>
+          <div class="item">
+            <div class="yr">Feb 2016 to<br>Nov 2019</div>
+            <div class="d">
+              <div class="deg">Bachelor of Commerce</div>
+              <div class="inst">Macquarie University, International Business</div>
             </div>
+          </div>
+          <div class="item">
+            <div class="yr">Feb 2014 to<br>Dec 2015</div>
+            <div class="d">
+              <div class="deg">Diploma of Commerce</div>
+              <div class="inst">SIBT, Navitas, Sydney City</div>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- ── Footer ── -->
-    <footer class="footer">
-        <div class="footer-name">Tommy Nguyen</div>
-        <div class="footer-contact">
-            0456 183 979 &nbsp; &nbsp;
-            <a href="mailto:tommyng.183@gmail.com">tommyng.183@gmail.com</a> &nbsp; &nbsp;
-            Bankstown NSW 2200
+      <div class="reveal d1">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;">Certifications</div>
+        <div class="certs">
+          <div class="cert">
+            <div class="cn">Google Analytics Individual Qualification</div>
+            <div class="cm">Google, certified</div>
+          </div>
+          <div class="cert">
+            <div class="cn">Data Visualization, Storytelling</div>
+            <div class="cm">LinkedIn Learning, certified</div>
+          </div>
         </div>
-        <div class="footer-nav">
-            <a href="Tommy-Resume.html" class="btn-primary">View Resume</a>
-            <a href="https://linkedin.com/in/tommy-nguyen-a145b414b" target="_blank" rel="noopener" class="btn-outline">LinkedIn</a>
-            <a href="https://github.com/Tommy-Nguyen-Stonera" target="_blank" rel="noopener" class="btn-outline">GitHub</a>
-            <a href="mailto:tommyng.183@gmail.com" class="btn-outline">Email Me</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="color:var(--accent-2)">§ 05, Let's talk</div>
+    <h2 class="reveal">Let's turn<br>data into <em>decisions</em>.</h2>
+
+    <div class="contact-grid">
+      <div class="contact-info reveal d1">
+        <div class="lbl">Email</div>
+        <a class="big" href="mailto:tommyng.183@gmail.com">tommyng.183@gmail.com</a>
+
+        <div class="row">
+          <span>📞 0456 183 979</span>
+          <span>📍 Bankstown NSW 2200</span>
         </div>
-    </footer>
+      </div>
 
-    <script>
-        // ── Scroll Reveal with IntersectionObserver ──
-        (function () {
-            var revealElements = document.querySelectorAll('.reveal');
-            var observer = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        // Stagger project cards
-                        var el = entry.target;
-                        var parent = el.parentElement;
-                        if (parent && parent.classList.contains('projects-grid')) {
-                            var siblings = Array.prototype.slice.call(parent.querySelectorAll('.project-card.reveal'));
-                            var index = siblings.indexOf(el);
-                            el.style.transitionDelay = (index * 80) + 'ms';
-                        }
-                        // Stagger cert items
-                        if (parent && parent.classList.contains('certs-grid')) {
-                            var certSiblings = Array.prototype.slice.call(parent.querySelectorAll('.cert-item.reveal'));
-                            var certIndex = certSiblings.indexOf(el);
-                            el.style.transitionDelay = (certIndex * 50) + 'ms';
-                        }
-                        el.classList.add('visible');
-                        observer.unobserve(el);
-                    }
-                });
-            }, {
-                threshold: 0.08,
-                rootMargin: '0px 0px -40px 0px'
-            });
+      <div class="cta-links reveal d2">
+        <a class="cta-btn" href="https://linkedin.com/in/tommy-nguyen-a145b414b" target="_blank" rel="noopener">LinkedIn <span class="arrow">/</span></a>
+        <a class="cta-btn" href="https://github.com/Tommy-Nguyen-Stonera" target="_blank" rel="noopener">GitHub <span class="arrow">/</span></a>
+        <a class="cta-btn" href="https://pizza-retail-analysis.vercel.app" target="_blank" rel="noopener">Live dashboard <span class="arrow">/</span></a>
+        <a class="cta-btn" href="mailto:tommyng.183@gmail.com">Email me <span class="arrow">/</span></a>
+      </div>
+    </div>
+  </div>
+</section>
 
-            revealElements.forEach(function (el) {
-                observer.observe(el);
-            });
-        })();
+<footer>
+  <div class="wrap">
+    <span>© 2026 Tommy Nguyen, made in Sydney</span>
+    <span>Press <span class="kbd-hint">⌘K</span> to navigate</span>
+  </div>
+</footer>
 
-    </script>
+<!-- COMMAND PALETTE -->
+<div class="cmd-overlay" id="cmdOverlay" role="dialog" aria-modal="true">
+  <div class="cmd-panel">
+    <input type="text" class="cmd-input" id="cmdInput" placeholder="Search sections, projects, or skills" autocomplete="off" />
+    <div class="cmd-results" id="cmdResults"></div>
+  </div>
+</div>
 
+<script>
+/* ============================================================
+   PROJECTS DATA
+   ============================================================ */
+const projects = [
+  {
+    cat: "SQL",
+    title: "Retail Business Analysis",
+    stack: "T-SQL, CTEs, Window Functions, Dynamic PIVOT",
+    q: "At which discount tier does each product category shift from profit to loss?",
+    a: "Discounts above 50% produce losses across every category. Technology is the top profit driver for Consumer and Corporate segments, even though it is not always the top revenue category.",
+    view: "https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-retail-business-analysis/main/SQL%20Retail%20Business%20Analysis%20Report.html",
+    src: "https://github.com/Tommy-Nguyen-Stonera/sql-retail-business-analysis",
+    data: "https://github.com/Tommy-Nguyen-Stonera/sql-retail-business-analysis/raw/main/data/ORDERS.csv"
+  },
+  {
+    cat: "SQL",
+    title: "AU Building Approvals",
+    stack: "T-SQL, LAG(), Conditional Aggregation, Seasonal PIVOT",
+    q: "Which states are gaining construction market share, and which are declining?",
+    a: "Victoria leads with 31% of national approvals against NSW at 28%. NSW has fallen 41% from its 2016 peak. Only Tasmania and South Australia grew between 2015-2019 and 2020-2024.",
+    view: "https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-au-building-approvals/main/report/au_building_approvals_report.html",
+    src: "https://github.com/Tommy-Nguyen-Stonera/sql-au-building-approvals",
+    data: "https://github.com/Tommy-Nguyen-Stonera/sql-au-building-approvals/raw/main/data/building_approvals_full.csv"
+  },
+  {
+    cat: "SQL",
+    title: "AU Building Activity",
+    stack: "T-SQL, Starts-to-Completions Ratio, PIVOT, Rolling Averages",
+    q: "Is Australia's construction pipeline building backlog or clearing it?",
+    a: "Starts-to-completions ratio spiked to 1.34 in 2021 (the COVID pipeline jam). National pipeline peaked at 244,100 dwellings in Q3 2022. Victoria overtook NSW as the largest construction market.",
+    view: "https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-au-building-activity/main/report.html",
+    src: "https://github.com/Tommy-Nguyen-Stonera/sql-au-building-activity",
+    data: "https://github.com/Tommy-Nguyen-Stonera/sql-au-building-activity/raw/main/data/building_activity.csv"
+  },
+  {
+    cat: "SQL",
+    title: "US Construction Spending",
+    stack: "T-SQL, LAG(), Peak-to-Trough, PIVOT, Rolling Averages",
+    q: "How did the GFC and COVID compare in construction spending impact and recovery speed?",
+    a: "GFC: total spending fell 37%, residential fell 64%, recovery took a decade. COVID: only a 2.8% dip followed by the fastest growth in the dataset at +14.9% in 2022.",
+    view: "https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/sql-us-construction-spending/main/report.html",
+    src: "https://github.com/Tommy-Nguyen-Stonera/sql-us-construction-spending",
+    data: "https://github.com/Tommy-Nguyen-Stonera/sql-us-construction-spending/raw/main/data/total_construction.csv"
+  },
+  {
+    cat: "Python",
+    title: "Customer Sentiment Analysis",
+    stack: "Python, VADER, TextBlob, NLP, pandas, matplotlib",
+    q: "Does what customers write in a review match the star rating they give?",
+    a: "VADER sentiment correlates 0.681 with star ratings. Quality and durability is the number one complaint at 41% of negative reviews. 3.9% of reviews show text-star mismatches. iFit has a 43% negative review rate.",
+    view: "https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis/main/report.html",
+    src: "https://github.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis",
+    data: "https://github.com/Tommy-Nguyen-Stonera/python-customer-sentiment-analysis/raw/main/data/home_depot_reviews.csv"
+  },
+  {
+    cat: "Python",
+    title: "Housing Feature Impact",
+    stack: "Python, pandas, seaborn, Statistical Comparison",
+    q: "Which building materials and finishes have the biggest dollar impact on sale price?",
+    a: "Stone masonry veneer adds $102K over no veneer. An excellent kitchen carries a $189K premium over an average one. Poured concrete foundation sits $43K above cinder block. Overall quality wins the correlation race at r = 0.80.",
+    view: "https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-housing-features-analysis/main/report.html",
+    src: "https://github.com/Tommy-Nguyen-Stonera/python-housing-features-analysis",
+    data: "https://github.com/Tommy-Nguyen-Stonera/python-housing-features-analysis/raw/main/ames_housing.tsv"
+  },
+  {
+    cat: "Python",
+    title: "Home Furnishings Market",
+    stack: "Python, pandas, seaborn, matplotlib, Market Analysis",
+    q: "How concentrated is the Amazon home improvement marketplace, and does Prime status drive better outcomes?",
+    a: "Top 10 sellers hold 15.8% of listings. Prime products rate 4.06 against 4.18 for non-Prime. Discounts above 50% generate 35% more reviews.",
+    view: "https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-home-furnishings-market/main/report.html",
+    src: "https://github.com/Tommy-Nguyen-Stonera/python-home-furnishings-market"
+  },
+  {
+    cat: "Python",
+    title: "US Construction Spending",
+    stack: "Python, pandas, matplotlib, seaborn, Time Series",
+    q: "Which sectors drove construction growth, and how did private and public spending behave through cycles?",
+    a: "Manufacturing and healthcare were the standout growth sectors. Private spending is far more volatile than public through downturns. Residential led the GFC collapse and the post-COVID bounce.",
+    view: "https://htmlpreview.github.io/?https://raw.githubusercontent.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis/main/report.html",
+    src: "https://github.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis",
+    data: "https://github.com/Tommy-Nguyen-Stonera/python-construction-spending-analysis/raw/main/construction_spending.csv"
+  },
+  {
+    cat: "Power BI",
+    title: "Pizza Retail Dashboard",
+    stack: "Power BI, DAX, Excel, Interactive Dashboard",
+    q: "When do customers order, what do they order, and which products drive the most revenue?",
+    a: "Friday is the highest revenue day. Classic category leads in both order count and revenue. Peak hours are 12 to 1pm and 5 to 7pm. Thanksgiving (27 Nov) was the single highest revenue day of the year.",
+    view: "https://pizza-retail-analysis.vercel.app",
+    src: "https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis",
+    data: "https://github.com/Tommy-Nguyen-Stonera/PowerBI-pizza-retail-business-analysis/raw/main/data_pizza.xlsx"
+  }
+];
+
+/* ---------- Render projects ---------- */
+const grid = document.getElementById('projGrid');
+function renderProjects() {
+  grid.innerHTML = projects.map((p, i) => `
+    <article class="proj-card reveal" data-cat="${p.cat}" style="transition-delay:${(i%4)*80}ms">
+      <span class="proj-cat" data-cat="${p.cat}">${p.cat}</span>
+      <h3 class="proj-title">${p.title}</h3>
+      <div class="proj-stack">${p.stack}</div>
+      <p class="proj-q">${p.q}</p>
+      <p class="proj-a">${p.a}</p>
+      <div class="proj-links">
+        <a class="primary" href="${p.view}" target="_blank" rel="noopener">View report</a>
+        <a href="${p.src}" target="_blank" rel="noopener">Source</a>
+        ${p.data ? `<a href="${p.data}" target="_blank" rel="noopener">Dataset</a>` : ''}
+      </div>
+    </article>
+  `).join('');
+  document.querySelectorAll('.proj-card.reveal').forEach(el => io.observe(el));
+}
+
+/* ---------- Filter ---------- */
+const filter = document.getElementById('projFilter');
+filter.addEventListener('click', e => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  filter.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
+  const f = btn.dataset.filter;
+  document.querySelectorAll('.proj-card').forEach(c => {
+    const match = (f === 'all' || c.dataset.cat === f);
+    c.classList.toggle('hidden', !match);
+  });
+});
+
+/* ============================================================
+   REVEAL ON SCROLL
+   ============================================================ */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+renderProjects();
+
+/* ============================================================
+   THEME TOGGLE
+   ============================================================ */
+const themeBtn = document.getElementById('themeToggle');
+const sunPath = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+const moonPath = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+function setTheme(t) {
+  document.documentElement.dataset.theme = t;
+  localStorage.setItem('tn-theme', t);
+  const svg = themeBtn.querySelector('svg');
+  svg.innerHTML = t === 'dark' ? sunPath : moonPath;
+}
+themeBtn.addEventListener('click', () => {
+  const cur = document.documentElement.dataset.theme || 'light';
+  setTheme(cur === 'dark' ? 'light' : 'dark');
+});
+setTheme(localStorage.getItem('tn-theme') || 'light');
+
+/* ============================================================
+   NAV SCROLLED
+   ============================================================ */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+
+/* ============================================================
+   COMMAND PALETTE
+   ============================================================ */
+const overlay = document.getElementById('cmdOverlay');
+const input = document.getElementById('cmdInput');
+const results = document.getElementById('cmdResults');
+const openBtn = document.getElementById('openCmd');
+
+const cmdItems = [
+  { group: "Navigate", icon: "§", title: "About", sub: "01", action: () => jump('#about') },
+  { group: "Navigate", icon: "§", title: "Experience", sub: "02", action: () => jump('#experience') },
+  { group: "Navigate", icon: "§", title: "Projects", sub: "03", action: () => jump('#projects') },
+  { group: "Navigate", icon: "§", title: "Background", sub: "04", action: () => jump('#background') },
+  { group: "Navigate", icon: "§", title: "Contact", sub: "05", action: () => jump('#contact') },
+  { group: "Actions", icon: "@", title: "Email Tommy", sub: "mailto", action: () => window.location = 'mailto:tommyng.183@gmail.com' },
+  { group: "Actions", icon: "in", title: "Open LinkedIn", sub: "external", action: () => window.open('https://linkedin.com/in/tommy-nguyen-a145b414b', '_blank') },
+  { group: "Actions", icon: "gh", title: "Open GitHub", sub: "external", action: () => window.open('https://github.com/Tommy-Nguyen-Stonera', '_blank') },
+  { group: "Actions", icon: "Pz", title: "Open Pizza dashboard", sub: "external", action: () => window.open('https://pizza-retail-analysis.vercel.app', '_blank') },
+  { group: "Actions", icon: "T", title: "Toggle theme", sub: "light or dark", action: () => themeBtn.click() },
+  ...projects.map((p, i) => ({
+    group: "Projects", icon: p.cat === 'SQL' ? 'Sq' : p.cat === 'Python' ? 'Py' : 'BI',
+    title: p.title, sub: p.cat,
+    action: () => window.open(p.view, '_blank')
+  }))
+];
+
+function jump(hash) {
+  closeCmd();
+  const el = document.querySelector(hash);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+let activeIdx = 0;
+function renderCmd() {
+  const q = input.value.trim().toLowerCase();
+  const filtered = cmdItems.filter(it => !q || it.title.toLowerCase().includes(q) || it.sub.toLowerCase().includes(q) || it.group.toLowerCase().includes(q));
+  if (!filtered.length) {
+    results.innerHTML = `<div class="cmd-group-label" style="padding:24px 16px;color:var(--muted)">No results for "${q}"</div>`;
+    return;
+  }
+  const groups = {};
+  filtered.forEach((it, i) => {
+    (groups[it.group] = groups[it.group] || []).push({ it, i });
+  });
+  let html = '';
+  let idx = 0;
+  Object.entries(groups).forEach(([g, list]) => {
+    html += `<div class="cmd-group-label">${g}</div>`;
+    list.forEach(({ it }) => {
+      html += `<div class="cmd-item${idx === activeIdx ? ' active' : ''}" data-idx="${idx}">
+        <span class="ci-icon">${it.icon}</span>
+        <span class="ci-title">${it.title}</span>
+        <span class="ci-sub">${it.sub}</span>
+      </div>`;
+      idx++;
+    });
+  });
+  results.innerHTML = html;
+  results._items = filtered;
+}
+
+function openCmd() {
+  overlay.classList.add('open');
+  input.value = '';
+  activeIdx = 0;
+  renderCmd();
+  setTimeout(() => input.focus(), 50);
+}
+function closeCmd() { overlay.classList.remove('open'); }
+
+openBtn.addEventListener('click', openCmd);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeCmd(); });
+input.addEventListener('input', () => { activeIdx = 0; renderCmd(); });
+results.addEventListener('click', e => {
+  const item = e.target.closest('.cmd-item');
+  if (!item) return;
+  const i = +item.dataset.idx;
+  if (results._items && results._items[i]) results._items[i].action();
+});
+
+document.addEventListener('keydown', e => {
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+    e.preventDefault();
+    overlay.classList.contains('open') ? closeCmd() : openCmd();
+    return;
+  }
+  if (!overlay.classList.contains('open')) return;
+  if (e.key === 'Escape') closeCmd();
+  if (e.key === 'ArrowDown') { e.preventDefault(); activeIdx = Math.min((results._items || []).length - 1, activeIdx + 1); renderCmd(); }
+  if (e.key === 'ArrowUp')   { e.preventDefault(); activeIdx = Math.max(0, activeIdx - 1); renderCmd(); }
+  if (e.key === 'Enter' && results._items && results._items[activeIdx]) {
+    results._items[activeIdx].action();
+  }
+});
+</script>
 </body>
 </html>
